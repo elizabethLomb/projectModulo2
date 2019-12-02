@@ -1,5 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800&display=swap');
 
+/* generales ------------------------------*/
 body {
   font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  color: #343a40;
+}
+
+/*mainNav ------------------------------*/
+.navbar {
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  border-bottom: 1px solid #dee2e6;
+}
+.navbar-brand{ padding: 0;}
+.navbar-rightSide .fa-search { font-size: 1.4rem; }
+.navbar-rightSide .fa-user-circle { font-size: 2.5rem; }
+.navbar-rightSide .dropdown-toggle::after{
+  display: none;
 }
