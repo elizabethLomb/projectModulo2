@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-// const bcrypt = require('bcrypt');
+// const bcrypt = require('bcryptjs');
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 // const SALT_WORK_FACTOR = 10;
 
-const userShema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Name is required'],
@@ -31,7 +31,7 @@ const userShema = new mongoose.Schema({
     lowercase: true,
     match: [EMAIL_PATTERN, 'Email is invalid']
   },
-  about: {
+  bio: {
     type: String
   },
   city: {
@@ -46,6 +46,13 @@ const userShema = new mongoose.Schema({
     type: String,
   },
 }, { timestamps: true })
+
+userSchema.virtual('complain', {
+  ref: 'Complain',
+  localField: '_id',
+  foreignField: 'user',
+  justOne: false,
+});
 
 const User = mongoose.model('User', userSchema);
 
