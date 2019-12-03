@@ -8,7 +8,7 @@ const Complain = require('../models/complain.model')
 //vista complains
 module.exports.complainsIndex = (req, res, next) => {
   Complain.find({ type: 'Queja' })
-
+  .populate('user')
   .then(complains => {
     res.render('complains', { complains })
   }).catch(next)
@@ -17,7 +17,7 @@ module.exports.complainsIndex = (req, res, next) => {
 //vista suggestions
 module.exports.suggestionsIndex = (req, res, next) => {
   Complain.find({ type: 'Sugerencia' })
-
+  .populate('user')
   .then(complains => {
     res.render('complains', { complains })
   }).catch(next)

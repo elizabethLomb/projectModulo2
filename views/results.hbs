@@ -1,3 +1,9 @@
 <h1 class="mb-4">Resultados de búsquesda</h1>
-
-{{> complain}}
+{{#if complains}}
+  {{> complain}}
+{{else}}
+  <div class="alert alert-primary">
+    <h3 class="h5">Lo sentimos! No hemos encontrado nada de lo que estás buscando</h3>
+    <a class="btn btn-primary" href="/">Volver a la home</a>
+  </div>
+{{/if}}
