@@ -6,7 +6,14 @@ const Complain = require('../models/complain.model')
 
 //index - short preview of complains
 module.exports.index = (req, res, next) => {
-  Complain.find()
+  //buscador
+  const criteria = req.query.search
+  ? {
+    body: new RegExp(req.query.search, "i")
+  }
+  : {}
+
+  Complain.find(criteria)
   .sort({ createdAt: -1 })
   .limit(10)
   .populate('user')
