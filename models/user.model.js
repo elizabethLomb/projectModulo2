@@ -40,14 +40,14 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Password is required'],
-    minlength: [8, 'Password needs at last 8 chars']
+    minlength: [6, 'Password needs at last 6 chars']
   },
   avatar: {
     type: String,
   },
 }, { timestamps: true })
 
-userSchema.virtual('complain', {
+userSchema.virtual('complains', {
   ref: 'Complain',
   localField: '_id',
   foreignField: 'user',

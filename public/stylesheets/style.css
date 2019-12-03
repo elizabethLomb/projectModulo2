@@ -11,6 +11,7 @@ a {
 
 /*mainNav ------------------------------*/
 .navbar {
+  background: white;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
   border-bottom: 1px solid #dee2e6;
 }
@@ -19,4 +20,13 @@ a {
 .navbar-rightSide .fa-user-circle { font-size: 2.5rem; }
 .navbar-rightSide .dropdown-toggle::after{
   display: none;
+}
+
+/* complain card ----------------------------*/
+.complainCard .card-header {
+  background: white;
+}
+.complainCard .userData img {
+  max-width: 60px;
+  border-radius: 60px;
 }

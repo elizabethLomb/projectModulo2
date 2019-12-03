@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/base.controller');
 
-// our first Route
-router.get('/', controller.base);
+//const usersController = require('../controllers/users.controller')
+const complainController = require('../controllers/complain.controller')
 
 module.exports = router;
+
+
+router.get('/', complainController.index);
+

@@ -10,12 +10,14 @@ const complainSchema = new mongoose.Schema ({
     required: true
   },
   type: {
-    type: String,
-    enum: ['Queja', 'Sugerencia']
+    type: ['Queja', 'Sugerencia']
   },
   subject: {
+    type: ['Animales', 'Alimentación', 'Atención al Ciudadano', 'Atención al Contribuyente', 'Consumo', 'Cultura', 'Deportes', 'Economía', 'Educación', 'Empleo', 'Informática y Comunicaciones', 'Justicia', 'Juventud', 'Medio Ambiente', 'Otros', 'Políticas Sociales', 'Protección Ciudadana', 'Protección de datos', 'Sanidad', 'Transportes', 'Turismo', 'Urbanismo', 'Vivienda']
+  },
+  title: {
     type: String,
-    enum: ['Atención al Ciudadano', 'Atención al Contribuyente', 'Consumo', 'Cultura', 'Deportes', 'Economía', 'Educación', 'Empleo', 'Informática y Comunicaciones', 'Justicia', 'Juventud', 'Medio Ambiente', 'Otros', 'Políticas Sociales', 'Protección Ciudadana', 'Protección de datos', 'Sanidad', 'Transportes', 'Turismo', 'Urbanismo', 'Vivienda']
+    required: true
   },
   body: {
     type: String,
@@ -29,7 +31,7 @@ const complainSchema = new mongoose.Schema ({
   }
 }, { timestamps: true })
 
-tweetSchema.virtual('comments', {
+complainSchema.virtual('comments', {
   ref: 'Comment',
   localField: '_id',
   foreignField: 'complain',
