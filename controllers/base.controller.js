@@ -5,6 +5,24 @@ const User = require('../models/user.model')
 const Complain = require('../models/complain.model')
 //const Comment = require('../models/comment.model')
 
+//vista complains
+module.exports.complainsIndex = (req, res, next) => {
+  Complain.find({ type: 'Queja' })
+
+  .then(complains => {
+    res.render('complains', { complains })
+  }).catch(next)
+}
+
+//vista suggestions
+module.exports.suggestionsIndex = (req, res, next) => {
+  Complain.find({ type: 'Sugerencia' })
+
+  .then(complains => {
+    res.render('complains', { complains })
+  }).catch(next)
+}
+
 //funcion buscador
 module.exports.results = (req, res, next) => {
   const criteria = req.query.search

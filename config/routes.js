@@ -10,5 +10,8 @@ module.exports = router;
 
 router.get('/', complainController.index);
 
+router.get('/quejas', controller.complainsIndex);
+router.get('/sugerencias', controller.suggestionsIndex);
+
 router.get('/results', controller.results);
 
