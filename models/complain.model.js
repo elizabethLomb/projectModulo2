@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 
 require('./comment.model')
 // require('./like.model')
+const categories = require('../constants/categories');
+const types = require('../constants/types');
+
 
 const complainSchema = new mongoose.Schema ({
   user: {
@@ -10,10 +13,14 @@ const complainSchema = new mongoose.Schema ({
     required: true
   },
   type: {
-    type: ['Queja', 'Sugerencia']
+    type: String,
+    enum: types,
+    required: true,
   },
   subject: {
-    type: ['Animales', 'Alimentación', 'Atención al Ciudadano', 'Atención al Contribuyente', 'Consumo', 'Cultura', 'Deportes', 'Economía', 'Educación', 'Empleo', 'Informática y Comunicaciones', 'Justicia', 'Juventud', 'Medio Ambiente', 'Otros', 'Políticas Sociales', 'Protección Ciudadana', 'Protección de datos', 'Sanidad', 'Transportes', 'Turismo', 'Urbanismo', 'Vivienda']
+    type: String,
+    enum: categories,
+    required: true
   },
   title: {
     type: String,

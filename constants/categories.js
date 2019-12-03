@@ -1,0 +1,3 @@
+const categories = ['Animales', 'Alimentación', 'Atención al Ciudadano', 'Atención al Contribuyente', 'Consumo', 'Cultura', 'Deportes', 'Economía', 'Educación', 'Empleo', 'Informática y Comunicaciones', 'Justicia', 'Juventud', 'Medio Ambiente', 'Otros', 'Políticas Sociales', 'Protección Ciudadana', 'Protección de datos', 'Sanidad', 'Transportes', 'Turismo', 'Urbanismo', 'Vivienda'];
+
+module.exports = categories;
