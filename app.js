@@ -44,6 +44,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 const dateHelper = require('./helpers/date');
 hbs.registerHelper('date', dateHelper);
+const typeIndexHelper = require('./helpers/typeIndex');
+hbs.registerHelper('typeIndex', typeIndexHelper);
 
 /**
  * Configure routes

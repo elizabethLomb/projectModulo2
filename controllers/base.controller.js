@@ -35,7 +35,7 @@ module.exports.results = (req, res, next) => {
   .sort({ createdAt: -1 })
   .limit(10)
   .populate('user')
-    .then((complains, user) => {
+    .then(complains => {
       res.render('results', { complains: complains })
     }).catch(next)
 };

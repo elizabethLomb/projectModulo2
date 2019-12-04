@@ -22,6 +22,15 @@ a {
   display: none;
 }
 
+/*home ------------------------------*/
+.homeOpenning {
+  background: url(https://images.unsplash.com/photo-1543783207-ec64e4d95325?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80) center;
+  border-radius: 0;
+  background-repeat: no-repeat;
+  min-height: 50vh;
+  background-size: cover;
+}
+
 /* complain card ----------------------------*/
 .complainCard .card-header {
   background: white;
@@ -29,4 +38,20 @@ a {
 .complainCard .userData img {
   max-width: 60px;
   border-radius: 60px;
+}
+.complainCard .tagSubject,
+  .complainCard .tagTypeSugestion,
+    .complainCard .tagTypeComplain {
+      font-size: 13px;
+      font-weight: 600;
+}
+.complainCard .tagTypeSugestion {
+  color: #212529;
+  background-color: #ffc107;
+  padding: 2px 4px;
+}
+.complainCard .tagTypeComplain {
+  color: #fff;
+  background-color: #dc3545;
+  padding: 2px 4px;
 }

@@ -17,7 +17,7 @@ module.exports.index = (req, res, next) => {
   .sort({ createdAt: -1 })
   .limit(10)
   .populate('user')
-    .then((complains, user) => {
-      res.render('index', { complains: complains })
+    .then(complains => {
+      res.render('index', { complains })
     }).catch(next)
 }

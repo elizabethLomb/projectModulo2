@@ -3,5 +3,3 @@ window.onload = function() {
     $('#inputSearch').trigger('focus')
   })
 }
-
-// document.getElementById('inputSearch').autofocus;
