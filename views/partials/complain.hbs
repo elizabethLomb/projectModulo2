@@ -15,13 +15,13 @@
     <div class="card-body">
       <h3 class="card-title">{{complain.title}}</h3>
       {{!-- voy por aqui - crear plaout or page for each complain detail --}}
-      <p class="card-text">{{complain.body}} <a href="/{{complain.id}}">Leer más</a></p>
+      <p class="card-text">{{complain.body}} <a href="quejas/detalle/{{this.id}}">Leer más</a></p>
 
       <div class="row">
         <div class="userData col-6 d-flex align-items-center">
           <img class="mr-3" src="{{complain.user.avatar}}" alt="{{user.username}}">
           <div>
-            <a class="font-weight-bold d-block" href="/{{user.username}}" class="d-block">{{complain.user.username}}</a>
+            <a class="font-weight-bold d-block" href="{{user.username}}" class="d-block">{{complain.user.username}}</a>
             <small class="text-muted">{{date complain.createdAt}}</small>
           </div>
         </div>

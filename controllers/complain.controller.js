@@ -26,9 +26,7 @@ module.exports.index = (req, res, next) => {
 
 //nueva queja
 module.exports.create = (req, res, next) => {
-  res.render('quejas/create', { 
-    complains: new Complain(), categories, types
-  })
+  res.render('quejas/create', { complains: new Complain(), categories, types })
 }
 
 module.exports.doCreate = (req, res, next) => {
@@ -47,7 +45,41 @@ module.exports.doCreate = (req, res, next) => {
   newComplain.save()
     .then(() => {
       res.redirect('/')
-    }).catch(error => {
-      next(error);
-    })
+    }).catch(error => { next(error); })
+}
+
+//detalle queja o sugerencia
+module.exports.detailComplain = (req, res, next) => {
+  Complain.findOne({ _id: req.params.id })
+  .populate('user')
+  .then(complain => {
+    if(complain){
+      res.render('quejas/detalle', { complain })
+    } else {
+      next(createError(404, 'Student not found'));
+    }
+  }).catch(error => { next(error); })
+}
+
+//profile
+module.exports.profile = (req, res, next) => {
+  User.findOne({ username: req.params.username })
+  // .populate('complains')
+  .populate({
+    path: 'complains',
+    populate: {
+      path: 'user'
+    }
+  })
+
+  .then(user => {
+    if (user) {
+      console.log(user.complains)
+      res.render('users/profile', { user, complains: user.complains })
+    } else {
+      // req.session.genericError = 'user not found'
+      res.redirect('/')
+    }
+  })
+  .catch(next)
 }
