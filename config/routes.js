@@ -10,6 +10,11 @@ module.exports = router;
 
 router.get('/', complainController.index);
 
+//crear nueva queja
+router.get('/quejas/crear', complainController.create);
+router.post('/quejas/crear', complainController.doCreate);
+
+
 router.get('/quejas', controller.complainsIndex);
 router.get('/sugerencias', controller.suggestionsIndex);
 
