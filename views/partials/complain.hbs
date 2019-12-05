@@ -14,7 +14,8 @@
     </div>
     <div class="card-body">
       <h3 class="card-title">{{complain.title}}</h3>
-      <p class="card-text">{{complain.body}}</p>
+      {{!-- voy por aqui - crear plaout or page for each complain detail --}}
+      <p class="card-text">{{complain.body}} <a href="/{{complain.id}}">Leer más</a></p>
 
       <div class="row">
         <div class="userData col-6 d-flex align-items-center">
