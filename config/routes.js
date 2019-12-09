@@ -13,7 +13,7 @@ router.get('/', complainController.index);
 router.get('/quejas/crear', complainController.create);
 router.post('/quejas/crear', complainController.doCreate);
 
-router.get('quejas/:id', complainController.detailComplain);
+router.get('/quejas/detalle/:id', complainController.detailComplain);
 router.get('/:username', complainController.profile);
 
 router.get('/quejas', controller.complainsIndex);

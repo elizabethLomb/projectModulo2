@@ -30,7 +30,6 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.doCreate = (req, res, next) => {
-  console.log(req.body)
   const newComplain = new Complain(req.body)
   // const newComplain = new Complain({
   //   //user: req.complain._id,
@@ -64,7 +63,6 @@ module.exports.detailComplain = (req, res, next) => {
 //profile
 module.exports.profile = (req, res, next) => {
   User.findOne({ username: req.params.username })
-  // .populate('complains')
   .populate({
     path: 'complains',
     populate: {
@@ -74,7 +72,6 @@ module.exports.profile = (req, res, next) => {
 
   .then(user => {
     if (user) {
-      console.log(user.complains)
       res.render('users/profile', { user, complains: user.complains })
     } else {
       // req.session.genericError = 'user not found'

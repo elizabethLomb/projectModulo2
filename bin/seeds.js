@@ -39,7 +39,7 @@ Promise.all([
               title: faker.lorem.words(),
               type: types[Math.floor(Math.random() * types.length)],
               subject: categories[Math.floor(Math.random() * categories.length)],
-              body: faker.lorem.paragraph(),
+              body: faker.lorem.text(),
               hashtags: '#transporte',
               images: faker.random.image(),
               createdAt: faker.date.past()

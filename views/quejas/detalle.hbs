@@ -1,1 +1,28 @@
-{{complain.title}}
+<h2 class="display-4">{{complain.title}}</h2>
+
+<div class="row">
+  <div class="col-8">
+    <div class="article-img">
+      <img src="{{complain.images}}"/>
+    </div>
+    <hr/>
+    <div class="userData col-6 d-flex align-items-center">
+      
+      <img class="mr-3" src="{{complain.user.avatar}}" alt="{{user.username}}">
+      <div>
+        <a class="font-weight-bold d-block" href="{{user.username}}" class="d-block">{{complain.user.username}}</a>
+        <small class="text-muted">{{date complain.createdAt}}</small>
+      </div>
+    </div>
+    <hr/>
+    <article>
+      {{complain.body}}
+    </article>
+  </div>
+
+  <div class="col-4">
+    {{complain.type}}
+
+    <span class="tagSubject"><i class="fas fa-tag mr-1"></i> {{complain.subject}}</span>
+  </div>
+</div>

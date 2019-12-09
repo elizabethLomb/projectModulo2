@@ -12,7 +12,7 @@ module.exports.complainsIndex = (req, res, next) => {
   .sort({ createdAt: -1 })
   .limit(10)
   .then(complains => {
-    res.render('complains', { complains })
+    res.render('quejas', { complains })
   }).catch(next)
 }
 
@@ -23,7 +23,7 @@ module.exports.suggestionsIndex = (req, res, next) => {
   .limit(10)
   .populate('user')
   .then(complains => {
-    res.render('complains', { complains })
+    res.render('sugerencias', { complains })
   }).catch(next)
 }
 

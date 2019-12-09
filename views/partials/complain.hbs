@@ -9,13 +9,12 @@
           <span class="{{#typeIndex type}}tagTypeSugestion{{else}}tagTypeComplain{{/typeIndex}}">{{complain.type}}</span>
         </div>
       </div>
-      
-     
     </div>
+    
     <div class="card-body">
       <h3 class="card-title">{{complain.title}}</h3>
       {{!-- voy por aqui - crear plaout or page for each complain detail --}}
-      <p class="card-text">{{complain.body}} <a href="quejas/detalle/{{this.id}}">Leer más</a></p>
+      <p class="card-text">{{complain.body}} <a href="quejas/detalle/{{complain.id}}">Leer más</a></p>
 
       <div class="row">
         <div class="userData col-6 d-flex align-items-center">

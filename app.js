@@ -42,10 +42,15 @@ app.use(express.static(path.join(__dirname, 'public')));
  */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+//formato fecha
 const dateHelper = require('./helpers/date');
 hbs.registerHelper('date', dateHelper);
+//color de la etiqueta
 const typeIndexHelper = require('./helpers/typeIndex');
 hbs.registerHelper('typeIndex', typeIndexHelper);
+//conteo de caracteres cards
+const charactersHelper = require('./helpers/characters');
+hbs.registerHelper('characters', charactersHelper); 
 
 /**
  * Configure routes
