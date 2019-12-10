@@ -61,23 +61,3 @@ module.exports.detailComplain = (req, res, next) => {
   }).catch(error => { next(error); })
 }
 
-//profile
-module.exports.profile = (req, res, next) => {
-  User.findOne({ username: req.params.username })
-  .populate({
-    path: 'complains',
-    populate: {
-      path: 'user'
-    }
-  })
-
-  .then(user => {
-    if (user) {
-      res.render('users/profile', { user, complains: user.complains })
-    } else {
-      // req.session.genericError = 'user not found'
-      res.redirect('/')
-    }
-  })
-  .catch(next)
-}

@@ -16,7 +16,7 @@ require('./config/hbs.config');
 require('./config/db.config');
 // require('./config/mailer.config');
 // const passportConfig = require('./config/passport.config')
-// const session = require('./config/session.config');
+const session = require('./config/session.config');
 
 /**
  * Configure express
@@ -27,14 +27,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(session);
+app.use(session);
 // app.use(passportConfig);
 
-// app.use((req, res, next) => {
-//   res.locals.currentUser = req.session.user
-//   req.currentUser = req.session.user
-//   next()
-// })
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.user
+  req.currentUser = req.session.user
+  next()
+})
 
 //app.use(alertMiddleware)
 
