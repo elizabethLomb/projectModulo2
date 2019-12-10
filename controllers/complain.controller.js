@@ -30,16 +30,15 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.doCreate = (req, res, next) => {
-  const newComplain = new Complain(req.body)
-  // const newComplain = new Complain({
-  //   //user: req.complain._id,
-  //   // type: req.body.type,
-  //   // subject: req.body.subject,
-  //   // title: req.body.title,
-  //   // body: req.body.body,
-  //   // image: req.body.image
-  //   //image: req.file ? req.file.url : undefined
-  // })
+  //const newComplain = new Complain(req.body)
+  const newComplain = new Complain({
+    user: req.complain._id,
+    type: req.body.type,
+    subject: req.body.subject,
+    title: req.body.title,
+    body: req.body.body,
+    image: req.file ? req.file.url : undefined
+  })
 
   newComplain.save()
     .then(() => {

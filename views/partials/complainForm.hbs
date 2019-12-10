@@ -1,17 +1,12 @@
-<form action="/quejas/crear" method="POST" class="mb-4">
+<form action="/quejas/crear" method="POST" class="mb-4" enctype="multipart/form-data">
   <h6>Nueva Discusión</h6>
 
   {{#each types}}
     <div class="custom-control custom-radio custom-control-inline">
       <input type="radio" id="{{this}}" name="type" class="custom-control-input" value="{{this}}">
       <label class="custom-control-label" for="{{this}}">{{this}}</label>
-   
     </div>
    {{/each}}
-  {{!-- <div class="custom-control custom-radio custom-control-inline">
-    <input type="radio" id="customRadioInline2" name="type" class="custom-control-input" value="Sugerencia">
-    <label class="custom-control-label" for="customRadioInline2">Sugerencias</label>
-  </div> --}}
 
   <div class="form-group">
     <label for="exampleFormControlSelect1">Seleccione una categoría</label>
@@ -32,7 +27,7 @@
   </div>
 
   <div class="form-group">
-    <input name="image" type="text" class="form-control-file {{#if error.image }}is-invalid{{/if}}" id="image"
+    <input name="image" type="file" class="form-control-file {{#if error.image }}is-invalid{{/if}}" id="image"
       placeholder="image" value="{{ complain.image }}">
   </div>
 
