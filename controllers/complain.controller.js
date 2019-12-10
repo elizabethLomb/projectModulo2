@@ -53,9 +53,10 @@ module.exports.detailComplain = (req, res, next) => {
   .populate('user')
   .then(complain => {
     if(complain){
+      console.log(complain)
       res.render('quejas/detalle', { complain })
     } else {
-      next(createError(404, 'Student not found'));
+      next(createError(404, 'Complain not found'));
     }
   }).catch(error => { next(error); })
 }
