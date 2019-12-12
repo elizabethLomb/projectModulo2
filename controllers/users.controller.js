@@ -21,7 +21,7 @@ module.exports.create = (req, res, next) => {
     bio: req.body.bio,
     city: req.body.city,
     password: req.body.password,
-    avatar: req.file ? req.file.url : undefined
+    avatar: req.file ? req.file.url : "/images/avataaars.png"
   })
 
   user.save()
@@ -131,8 +131,9 @@ module.exports.profile = (req, res, next) => {
   .then(user => {
     if (user) {
       res.render('users/profile', { user, complains: user.complains })
+      console.log(user.complains)
     } else {
-      // req.session.genericError = 'user not found'
+      req.session.genericError = 'user not found'
       res.redirect('/')
     }
   })
@@ -150,7 +151,6 @@ module.exports.edit = (req, res, next) => {
 module.exports.doEdit = (req, res, next) => {
   //VOY POR AQUI------------------
   User.findByIdAndUpdate({ username: req.params.username })
-
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
       next(createError(404));

@@ -26,17 +26,17 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{!-- <i class="fas fa-user-circle"></i> --}}
-          <img src="{{currentUser.avatar}}"/>
+          <img class="avatarUser" src="{{currentUser.avatar}}"/>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="{{currentUser.complains}}">Mis Quejas</a>
+          <a class="dropdown-item" href="/{{currentUser.complains}}">Mis Quejas</a>
           <a class="dropdown-item" href="#">Mis Sugerencias</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{currentUser.username}}">Ver Perfil</a>
-          <a class="dropdown-item" href="{{currentUser.username}}/edit">Ajustes</a>
+          <a class="dropdown-item" href="/{{currentUser.username}}">Ver Perfil</a>
+          <a class="dropdown-item" href="/{{currentUser.username}}/edit">Ajustes</a>
           <div class="dropdown-divider"></div>
           {{!-- Logout --}}
-          <form class="px-4 py-3" action="" method="POST">
+          <form class="px-4 py-3" action="/logout" method="POST">
             <button type="submit" class="btn btn-outline-danger">Cerrar sesión</button>
           </form>
         </div>

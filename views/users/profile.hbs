@@ -2,11 +2,12 @@
   <div class="col-4">
     <img src="{{user.avatar}}" alt="{{user.username}}" />
     <p>{{user.username}}</p>
+    <p>{{user.city}}</p>
     <p>{{user.bio}}</p>
   </div>
 
   <div class="col-8">
-    {{#each complains as |complain|}}
+    {{#each user.complains as |complain|}}
       <div class="card shadow-sm mb-4 complainCard">
         <div class="card-header">
           <div class="row">

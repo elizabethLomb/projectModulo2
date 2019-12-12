@@ -32,9 +32,7 @@ module.exports.create = (req, res, next) => {
 module.exports.doCreate = (req, res, next) => {
   //const newComplain = new Complain(req.body)
   const newComplain = new Complain({
-    //user: req.complain._id,
-    //HACER: mismo siempre prueba
-    user: "5defd91f3731392dcd8ea99f",
+    user: req.currentUser,
     type: req.body.type,
     subject: req.body.subject,
     title: req.body.title,

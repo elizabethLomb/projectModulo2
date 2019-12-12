@@ -22,8 +22,7 @@
   </div>
 
   <div class="col-4">
-    <span>{{complain.type}}</span>
-   {{!-- <span class="{{#typeIndex type}}tagTypeSugestion{{else}}tagTypeComplain{{/typeIndex}}">{{complain.type}}</span> --}}
+   <span class="{{#typeIndex complain.type}}tagTypeSugestion{{else}}tagTypeComplain{{/typeIndex}}">{{complain.type}}</span>
 
     <span class="tagSubject d-block mt-2"><i class="fas fa-tag mr-1"></i> {{complain.subject}}</span>
   </div>

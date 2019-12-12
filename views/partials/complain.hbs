@@ -6,11 +6,11 @@
           <span class="tagSubject"><i class="fas fa-tag mr-1"></i> {{complain.subject}}</span>
         </div>
         <div class="col-6 text-lg-right">
-          <span class="{{#typeIndex type}}tagTypeSugestion{{else}}tagTypeComplain{{/typeIndex}}">{{complain.type}}</span>
+          <span class="{{#typeIndex complain.type}}tagTypeSugestion{{else}}tagTypeComplain{{/typeIndex}}">{{complain.type}}</span>
         </div>
       </div>
     </div>
-    
+
     <div class="card-body">
       <h3 class="card-title">{{complain.title}}</h3>
       {{!-- voy por aqui - crear plaout or page for each complain detail --}}
