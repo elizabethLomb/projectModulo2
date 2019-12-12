@@ -165,27 +165,24 @@ module.exports.userComplains = (req, res, next) => {
 
 //edit
 module.exports.edit = (req, res, next) => {
-  // User.findOne({ username: req.params.username })
-  // .then(user => {
-  //   res.render('users/new', { user })
-  // }).catch(error => next(error));
   res.render('users/new', { user: req.currentUser })
 }
 
 module.exports.doEdit = (req, res, next) => {
-  //VOY POR AQUI------------------
-  User.findByIdAndUpdate({ username: req.currentUser._id })
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-      next(createError(404));
-  } else {
-      Book.findByIdAndUpdate(id, req.body, { new: true })
-          .then(book => {
-              console.log(book)
-              res.redirect('/books')
-          })
-          .catch(
-              error => next(error)
-          )
-  }
+  User.findByIdAndUpdate( req.currentUser._id, req.body , { runValidators: true, new: true })
+    .then(user => {
+      if (user) {
+        req.session.user = user
+        res.redirect(`/${req.currentUser.username}`)
+      } else {
+        next(createError(404, `User not found`));
+      }
+    })
+    .catch(error => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        res.render('/me/edit', { user: req.body, error: error.errors })
+      } else {
+        next(error);
+      }
+    })
 }

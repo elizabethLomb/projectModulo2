@@ -2,7 +2,7 @@
 {{#if user.isNew}}
   <form action="/users" method="POST" enctype="multipart/form-data">
 {{else}}
-  <form action="/users/{{user.username}}/edit" method="POST"></form>
+  <form action="/me/edit" method="POST">
 {{/if}}
  
 
@@ -26,6 +26,59 @@
     {{#if error.lastname}}
     <div class="invalid-feedback">
       {{error.lastname.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  
+
+  
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input name="city" type="text" class="form-control {{#if error.city }}is-invalid{{/if}}" id="city"
+      placeholder="Enter username" value="{{ user.city }}">
+
+    {{#if error.city}}
+    <div class="invalid-feedback">
+      {{error.city.message}}
+    </div>
+    {{/if}}
+  </div>
+
+  <div class="form-group">
+    <label for="bio">Bio</label>
+    <textarea name="bio" type="text" class="form-control {{#if error.bio }}is-invalid{{/if}}" id="bio"
+      placeholder="Enter bio" value="{{ user.bio }}" rows="4"></textarea>
+
+    {{#if error.bio}}
+    <div class="invalid-feedback">
+      {{error.bio.message}}
+    </div>
+    {{/if}}
+  </div>
+{{#if user.isNew}}
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input name="password" type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password"
+      placeholder="password" value="{{ user.password }}">
+
+    {{#if error.password}}
+    <div class="invalid-feedback">
+      {{error.password.message}}
+    </div>
+    {{/if}}
+  </div>
+  
+
+  <div class="form-group">
+    <label for="avatar">Avatar</label>
+    <input name="avatar" type="file" class="form-control-file {{#if error.avatar }}is-invalid{{/if}}" id="avatar"
+      placeholder="Enter avatar url" value="{{ user.avatar }}">
+
+    {{#if error.avatar}}
+    <div class="invalid-feedback">
+      {{error.avatar.message}}
     </div>
     {{/if}}
   </div>
@@ -54,53 +107,7 @@
     {{/if}}
   </div>
 
-  <div class="form-group">
-    <label for="city">City</label>
-    <input name="city" type="text" class="form-control {{#if error.city }}is-invalid{{/if}}" id="city"
-      placeholder="Enter username" value="{{ user.city }}">
-
-    {{#if error.city}}
-    <div class="invalid-feedback">
-      {{error.city.message}}
-    </div>
-    {{/if}}
-  </div>
-
-  <div class="form-group">
-    <label for="bio">Bio</label>
-    <textarea name="bio" type="text" class="form-control {{#if error.bio }}is-invalid{{/if}}" id="bio"
-      placeholder="Enter bio" value="{{ user.bio }}" rows="4"></textarea>
-
-    {{#if error.bio}}
-    <div class="invalid-feedback">
-      {{error.bio.message}}
-    </div>
-    {{/if}}
-  </div>
-
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input name="password" type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password"
-      placeholder="password" value="{{ user.password }}">
-
-    {{#if error.password}}
-    <div class="invalid-feedback">
-      {{error.password.message}}
-    </div>
-    {{/if}}
-  </div>
-
-  <div class="form-group">
-    <label for="avatar">Avatar</label>
-    <input name="avatar" type="file" class="form-control-file {{#if error.avatar }}is-invalid{{/if}}" id="avatar"
-      placeholder="Enter avatar url" value="{{ user.avatar }}">
-
-    {{#if error.avatar}}
-    <div class="invalid-feedback">
-      {{error.avatar.message}}
-    </div>
-    {{/if}}
-  </div>
+  {{/if}}
 
   {{#if user.isNew}}
     <button type="submit" class="btn btn-primary">Registro</button>
