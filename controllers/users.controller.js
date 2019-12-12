@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
-
+const createError = require('http-errors');
 const User = require('../models/user.model')
 const Complain = require('../models/complain.model')
 //const Comment = require('../models/comment.model')
 const categories = require('../constants/categories')
 const types = require('../constants/types')
+
+
 
 //nuevo usuario
 module.exports.new = (req, res, next) => {
@@ -131,7 +133,6 @@ module.exports.profile = (req, res, next) => {
   .then(user => {
     if (user) {
       res.render('users/profile', { user, complains: user.complains })
-      console.log(user.complains)
     } else {
       req.session.genericError = 'user not found'
       res.redirect('/')
@@ -140,17 +141,40 @@ module.exports.profile = (req, res, next) => {
   .catch(next)
 }
 
+//ver mis quejas
+module.exports.userComplains = (req, res, next) => {
+  if (['quejas', 'sugerencias'].includes(req.params.complainType)) {
+    User.findOne({ username: req.params.username })
+    .sort({ createdAt: -1 })
+    .populate({
+      path: 'complains',
+      match: { type: req.params.complainType === 'quejas' ? 'Queja' : 'Sugerencia' },
+      populate: {
+        path: 'user'
+      }
+    })
+  
+    .then(user => {
+      console.log({ user })
+      res.render('users/profile', { user })
+    }).catch(next)
+  } else {
+    next(createError(404));
+  }
+}
+
 //edit
 module.exports.edit = (req, res, next) => {
-  User.findOne({ username: req.params.username })
-  .then(user => {
-    res.render('users/new', { user })
-  }).catch(error => next(error));
+  // User.findOne({ username: req.params.username })
+  // .then(user => {
+  //   res.render('users/new', { user })
+  // }).catch(error => next(error));
+  res.render('users/new', { user: req.currentUser })
 }
 
 module.exports.doEdit = (req, res, next) => {
   //VOY POR AQUI------------------
-  User.findByIdAndUpdate({ username: req.params.username })
+  User.findByIdAndUpdate({ username: req.currentUser._id })
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
       next(createError(404));

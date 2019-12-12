@@ -8,12 +8,18 @@
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css' />
 </head>
 <body>
-	{{> mainNavbar}}
-	{{!-- {{> homeOpening}} --}}
+	{{#if currentUser}}
+		{{> mainNavbar}}
+	{{else}}
+		<h1 class="h4 mb-0 font-weight-bold"><img class="" width="60px" src="https://cdn1.iconfinder.com/data/icons/people-job/100/Job-plus-42-256.png" /> Sugerencias y Quejas</h1>
+	{{/if}}
+
 	<div class="container mt-5 pb-5">
 		{{{body}}}
 
+	{{#if currentUser}}
 		{{> mainFooter}}
+	{{/if}}
 	</div>
 
 

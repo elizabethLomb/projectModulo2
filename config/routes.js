@@ -27,11 +27,13 @@ router.get('/login', authMiddleware.isNotAuthenticated, usersController.login)
 router.post('/login', authMiddleware.isNotAuthenticated, usersController.doLogin)
 router.post('/logout', authMiddleware.isAuthenticated, usersController.logout)
 
+router.get('/results', authMiddleware.isAuthenticated, controller.results);
+
 router.get('/quejas/detalle/:id', authMiddleware.isAuthenticated, complainController.detailComplain);
 
-router.get('/:username', authMiddleware.isAuthenticated, usersController.profile);
-router.get('/:username/edit', authMiddleware.isAuthenticated, usersController.edit);
-router.post('/:username/edit', authMiddleware.isAuthenticated, usersController.doEdit);
+router.get('/me/edit', authMiddleware.isAuthenticated, usersController.edit);
+router.post('/me/edit', authMiddleware.isAuthenticated, usersController.doEdit);
 
-router.get('/results', authMiddleware.isAuthenticated, controller.results);
+router.get('/:username', authMiddleware.isAuthenticated, usersController.profile);
+router.get('/:username/:complainType', authMiddleware.isAuthenticated, usersController.userComplains);
 
