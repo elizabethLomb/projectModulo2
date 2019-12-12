@@ -7,12 +7,12 @@ const categories = require('../constants/categories')
 const types = require('../constants/types')
 
 //nuevo usuario
-module.exports.new = (_, res) => {
+module.exports.new = (req, res, next) => {
   res.render('users/new', { user: new User() })
 }
 
 //nuevo
-module.exports.create = (req, res, next) => {
+module.exports.create = (req, res, next) => { 
   const user = new User({
     name: req.body.name,
     lastname: req.body.lastname,
@@ -25,9 +25,10 @@ module.exports.create = (req, res, next) => {
   })
 
   user.save()
-  .then((user) => {
+  .then(user => {
     //HACER:
     //mailer.sendValidateEmail(user)
+    console.log(user)
     res.redirect('/login')
   }).catch(error => {
     if (error instanceof mongoose.Error.ValidationError) {

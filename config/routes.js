@@ -14,10 +14,8 @@ router.get('/quejas', authMiddleware.isAuthenticated, controller.complainsIndex)
 router.get('/sugerencias', authMiddleware.isAuthenticated, controller.suggestionsIndex);
 
 //crear nueva queja
-router.get('/quejas/crear', complainController.create);
-router.post('/quejas/crear', upload.single('image'), complainController.doCreate);
-
-router.get('/quejas/detalle/:id', complainController.detailComplain);
+router.get('/quejas/crear', authMiddleware.isAuthenticated, complainController.create);
+router.post('/quejas/crear', authMiddleware.isAuthenticated, upload.single('image'), complainController.doCreate);
 
 //crear usuario
 router.get('/users/new', authMiddleware.isNotAuthenticated, usersController.new)
@@ -29,9 +27,11 @@ router.get('/login', authMiddleware.isNotAuthenticated, usersController.login)
 router.post('/login', authMiddleware.isNotAuthenticated, usersController.doLogin)
 router.post('/logout', authMiddleware.isAuthenticated, usersController.logout)
 
-router.get('/:username', usersController.profile);
-router.get('/:username/edit', usersController.edit);
-router.post('/:username/edit', usersController.doEdit);
+router.get('/quejas/detalle/:id', authMiddleware.isAuthenticated, complainController.detailComplain);
 
-router.get('/results', controller.results);
+router.get('/:username', authMiddleware.isAuthenticated, usersController.profile);
+router.get('/:username/edit', authMiddleware.isAuthenticated, usersController.edit);
+router.post('/:username/edit', authMiddleware.isAuthenticated, usersController.doEdit);
+
+router.get('/results', authMiddleware.isAuthenticated, controller.results);
 

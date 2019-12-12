@@ -15,7 +15,7 @@ const bodyParser = require('body-parser');
 require('./config/hbs.config');
 require('./config/db.config');
 // require('./config/mailer.config');
-// const passportConfig = require('./config/passport.config')
+// const passportConfig = require('./config/passport.config') 
 const session = require('./config/session.config');
 
 /**
