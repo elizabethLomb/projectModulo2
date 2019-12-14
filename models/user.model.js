@@ -3,9 +3,9 @@ const bcrypt = require('bcryptjs');
 const EMAIL_PATTERN = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const SALT_WORK_FACTOR = 10;
 
-// const generateRandomToken = () => {
-//   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-// }
+const generateRandomToken = () => {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -49,13 +49,13 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
-  // validateToken: {
-  //   type: String,
-  //   default: generateRandomToken
-  // },
+  validateToken: {
+    type: String,
+    default: generateRandomToken
+  },
   validated: {
     type: Boolean,
-    default: true
+    default: false
   },
   social: {
     google: String,

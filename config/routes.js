@@ -21,7 +21,7 @@ router.post('/quejas/crear', authMiddleware.isAuthenticated, upload.single('imag
 //crear usuario
 router.get('/users/new', authMiddleware.isNotAuthenticated, usersController.new)
 router.post('/users', authMiddleware.isNotAuthenticated, upload.single('avatar'), usersController.create)
-//router.get('/users/:token/validate', usersController.validate)
+router.get('/users/:token/validate', usersController.validate)
 
 //login
 

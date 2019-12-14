@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const User = require('../models/user.model')
 const Complain = require('../models/complain.model')
 //const Comment = require('../models/comment.model')
+const mailer = require('../config/mailer.config');
 const categories = require('../constants/categories')
 const types = require('../constants/types')
 const passport = require('passport');
@@ -30,7 +31,7 @@ module.exports.create = (req, res, next) => {
   user.save()
   .then(user => {
     //HACER:
-    //mailer.sendValidateEmail(user)
+    mailer.sendValidateEmail(user)
     console.log(user)
     res.redirect('/login')
   }).catch(error => {
@@ -50,23 +51,23 @@ module.exports.create = (req, res, next) => {
   })
 }
 
-//HACER: validacion
-// module.exports.validate = (req, res, next) => {
-//   User.findOne({ validateToken: req.params.token })
-//     .then(user => {
-//       if (user) {
-//         user.validated = true
-//         user.save()
-//           .then(() => {
-//             res.redirect('/login')
-//           })
-//           .catch(next)
-//       } else {
-//         res.redirect('/')
-//       }
-//     })
-//     .catch(next)
-// }
+// HACER: validacion
+module.exports.validate = (req, res, next) => {
+  User.findOne({ validateToken: req.params.token })
+    .then(user => {
+      if (user) {
+        user.validated = true
+        user.save()
+          .then(() => {
+            res.redirect('/login')
+          })
+          .catch(next)
+      } else {
+        res.redirect('/')
+      }
+    })
+    .catch(next)
+}
 
 module.exports.login = (req, res, next) => {
   res.render('users/login')
