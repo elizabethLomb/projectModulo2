@@ -17,12 +17,12 @@ passport.use('slack-auth', new SlackStrategy(
     callbackURL: process.env.GOOGLE_AUTH_CB || '/callback/google',
   }, authenticateOAuthUser));
   
-  // passport.use('facebook-auth', new FBStrategy({
-  //   clientID: process.env.FB_AUTH_CLIENT_ID,
-  //   clientSecret: process.env.FB_AUTH_CLIENT_SECRET,
-  //   callbackURL: process.env.FB_AUTH_CB || '/callback/facebook',
-  //   profileFields: ['displayName', 'emails']
-  // }, authenticateOAuthUser));
+  passport.use('facebook-auth', new FBStrategy({
+    clientID: process.env.FB_AUTH_CLIENT_ID,
+    clientSecret: process.env.FB_AUTH_CLIENT_SECRET,
+    callbackURL: process.env.FB_AUTH_CB || '/callback/facebook',
+    profileFields: ['displayName', 'emails']
+  }, authenticateOAuthUser));
 
   function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
     console.log(profile)
