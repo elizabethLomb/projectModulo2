@@ -11,12 +11,12 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Name is required'],
-    minlength: [3, 'Name needs at last 8 chars'],
+    minlength: [3, 'Name needs at last 3 chars'],
     trim: true
   },
   lastname: {
     type: String,
-    required: [true, 'Name is required'],
+    // required: [true, 'Name is required'],
     minlength: [3, 'Name needs at last 3 chars'],
     trim: true
   },
@@ -56,6 +56,11 @@ const userSchema = new mongoose.Schema({
   validated: {
     type: Boolean,
     default: true
+  },
+  social: {
+    google: String,
+    facebook: String,
+    slack: String
   },
 }, { timestamps: true })
 

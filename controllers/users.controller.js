@@ -5,6 +5,7 @@ const Complain = require('../models/complain.model')
 //const Comment = require('../models/comment.model')
 const categories = require('../constants/categories')
 const types = require('../constants/types')
+const passport = require('passport');
 
 
 
@@ -69,6 +70,19 @@ module.exports.create = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   res.render('users/login')
+}
+
+module.exports.doSocialLogin = (req, res, next) => {
+  const socialProvider = req.params.provider
+  
+  passport.authenticate(`${socialProvider}-auth`, (error, user) => {
+    if (error) {
+      next(error);
+    } else {
+      req.session.user = user;
+      res.redirect('/')
+    }
+  })(req, res, next);
 }
 
 //login

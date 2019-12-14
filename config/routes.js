@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 
 const controller = require('../controllers/base.controller')
 const usersController = require('../controllers/users.controller')
@@ -23,9 +24,13 @@ router.post('/users', authMiddleware.isNotAuthenticated, upload.single('avatar')
 //router.get('/users/:token/validate', usersController.validate)
 
 //login
+
 router.get('/login', authMiddleware.isNotAuthenticated, usersController.login)
 router.post('/login', authMiddleware.isNotAuthenticated, usersController.doLogin)
 router.post('/logout', authMiddleware.isAuthenticated, usersController.logout)
+
+router.post('/slack', authMiddleware.isNotAuthenticated, passport.authenticate('slack-auth'));
+router.get('/callback/:provider', authMiddleware.isNotAuthenticated, usersController.doSocialLogin);
 
 router.get('/results', authMiddleware.isAuthenticated, controller.results);
 
