@@ -1,15 +1,28 @@
 const passport = require('passport');
 const User = require('../models/user.model');
-// const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const SlackStrategy = require('passport-slack').Strategy;
-// const FBStrategy = require('passport-facebook').Strategy;
+const FBStrategy = require('passport-facebook').Strategy;
 
 passport.use('slack-auth', new SlackStrategy(
   {
     clientID: process.env.SLACK_CLIENT_ID,
     clientSecret: process.env.SLACK_CLIENT_SECRET,
-    callbackURL: process.env.SLACK_CALLBACK_URL
+    callbackURL: process.env.SLACK_CALLBACK_URL || '/callback/slack',
   }, authenticateOAuthUser));
+
+  passport.use('google-auth', new GoogleStrategy({
+    clientID: process.env.GOOGLE_AUTH_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
+    callbackURL: process.env.GOOGLE_AUTH_CB || '/callback/google',
+  }, authenticateOAuthUser));
+  
+  // passport.use('facebook-auth', new FBStrategy({
+  //   clientID: process.env.FB_AUTH_CLIENT_ID,
+  //   clientSecret: process.env.FB_AUTH_CLIENT_SECRET,
+  //   callbackURL: process.env.FB_AUTH_CB || '/callback/facebook',
+  //   profileFields: ['displayName', 'emails']
+  // }, authenticateOAuthUser));
 
   function authenticateOAuthUser(accessToken, refreshToken, profile, next) {
     console.log(profile)
