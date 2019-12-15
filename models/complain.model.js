@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 require('./comment.model')
-// require('./like.model')
+require('./like.model')
 const categories = require('../constants/categories');
 const types = require('../constants/types');
 
@@ -45,12 +45,12 @@ complainSchema.virtual('comments', {
   justOne: false,
 });
 
-// tweetSchema.virtual('likes', {
-//   ref: 'Like',
-//   localField: '_id',
-//   foreignField: 'tweet',
-//   justOne: false,
-// });
+complainSchema.virtual('likes', {
+  ref: 'Like',
+  localField: '_id',
+  foreignField: 'complain',
+  justOne: false,
+});
 
 const Complain = mongoose.model('Complain', complainSchema);
 

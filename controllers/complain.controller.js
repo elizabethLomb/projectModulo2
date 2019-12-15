@@ -5,6 +5,7 @@ const Complain = require('../models/complain.model')
 //const Comment = require('../models/comment.model')
 const categories = require('../constants/categories')
 const types = require('../constants/types')
+const Like = require('../models/like.model');
 
 //index - short preview of complains
 module.exports.index = (req, res, next) => {
@@ -19,9 +20,34 @@ module.exports.index = (req, res, next) => {
   .sort({ createdAt: -1 })
   .limit(10)
   .populate('user')
+  .populate('likes')
     .then(complains => {
       res.render('index', { complains })
     }).catch(next)
+}
+
+module.exports.like = (req, res, next) => {
+  const params = { complain: req.params.id, user: req.currentUser._id }
+
+  Like.findOne(params)
+    .then(like => {
+      if (like) {
+        Like.findByIdAndRemove(like._id)
+          .then(() => {
+            res.json({ likes: -1 })
+          })
+          .catch(next)
+      } else {
+        const like = new Like(params)
+
+        like.save()
+          .then(() => {
+            res.json({ likes: 1})
+          })
+          .catch(next)
+      }
+    })
+    .catch(next)
 }
 
 //nueva queja

@@ -16,6 +16,8 @@
       {{!-- voy por aqui - crear plaout or page for each complain detail --}}
       <p class="card-text">{{complain.body}} <a href="quejas/detalle/{{complain.id}}">Leer más</a></p>
 
+              
+
       <div class="row">
         <div class="userData col-6 d-flex align-items-center">
           <img class="mr-3" src="{{complain.user.avatar}}" alt="{{user.username}}">
@@ -26,7 +28,12 @@
         </div>
 
         <div class="complainInfo col-6">
-          likes
+          <div>
+          <button class="btn btn-sm mb-2 btn-outline-danger" id="{{complain.id}}" onclick="like(event)">
+            <i class="fa fa-heart"></i>
+            <span class="likes-count">{{complain.likes.length}}</span> likes
+          </button>
+        </div>
         </div>
       </div>
 
