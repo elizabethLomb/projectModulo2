@@ -8,35 +8,41 @@
 
   <div class="col-8">
     {{#each user.complains as |complain|}}
-      <div class="card shadow-sm mb-4 complainCard">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-6">
-              <span class="tagSubject"><i class="fas fa-tag mr-1"></i> {{complain.subject}}</span>
-            </div>
-            <div class="col-6 text-lg-right">
-              <span class="{{#typeIndex type}}tagTypeSugestion{{else}}tagTypeComplain{{/typeIndex}}">{{complain.type}}</span>
-            </div>
+    <div class="card shadow-sm mb-4 complainCard">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-6">
+            <span class="tagSubject"><i class="fas fa-tag mr-1"></i> {{complain.subject}}</span>
           </div>
-        </div>
-
-        <div class="card-body">
-          <h3 class="card-title">{{complain.title}}</h3>
-          <p class="card-text">{{complain.body}} <a href="quejas/detalle/{{complain.id}}">Leer más</a></p>
-          <div class="row">
-            <div class="userData col-6 d-flex align-items-center">
-              <div>
-                <small class="text-muted">{{date complain.createdAt}}</small>
-              </div>
-            </div>
-
-            <div class="complainInfo col-6">
-              likes
-            </div>
+          <div class="col-6 text-lg-right">
+            <span
+              class="{{#typeIndex type}}tagTypeSugestion{{else}}tagTypeComplain{{/typeIndex}}">{{complain.type}}</span>
           </div>
-
         </div>
       </div>
+
+      <div class="card-body">
+        <h3 class="card-title">{{complain.title}}</h3>
+        <p class="card-text">{{complain.body}} <a href="quejas/detalle/{{complain.id}}">Leer más</a></p>
+        <div class="row">
+          <div class="userData col-6 d-flex align-items-center">
+            <div>
+              <small class="text-muted">{{date complain.createdAt}}</small>
+            </div>
+          </div>
+
+          <div class="complainInfo col-6">
+            <div>
+              <button class="btn btn-sm mb-2 btn-outline-danger" id="{{complain.id}}" onclick="like(event)">
+                <i class="fa fa-heart"></i>
+                <span class="likes-count">{{complain.likes.length}}</span> likes
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
     {{/each}}
   </div>
 </div>
