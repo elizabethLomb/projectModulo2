@@ -52,9 +52,7 @@ module.exports.like = (req, res, next) => {
 
 //nueva queja
 module.exports.create = (req, res, next) => {
-  res.render('quejas/create', {
-    complains: new Complain(), categories, types
-  })
+  res.render('quejas/create', { complains: new Complain(), categories, types })
 }
 
 module.exports.doCreate = (req, res, next) => {
