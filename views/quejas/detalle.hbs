@@ -19,6 +19,23 @@
     <article>
       {{complain.body}}
     </article>
+
+    <div class="commentsSections">
+      <div class="card">
+        <div class="card-body">
+          {{> commentForm}}
+        </div>
+      </div>
+    </div>
+
+    comentarios
+    {{#each complain.comments as |comment|}}
+      <div class="mb-3 border-bottom pb-3">
+        <p class="card-subtitle mb-2 text-muted">{{date comment.createdAt}}</p>
+        <a href="/{{comment.user.username}}">{{comment.user.username}}</a>
+        <p>{{comment.text}}</p>
+      </div>
+    {{/each}}
   </div>
 
   <div class="col-4">

@@ -7,8 +7,14 @@ body {
 
 a {
   color: #343a40;
+  cursor: pointer;
 }
+a:hover { text-decoration: none; }
+
 img{ max-width: 100%;}
+
+/* forms -------------------------------*/
+label { font-weight: 500; }
 
 /*mainNav ------------------------------*/
 .navbar {
@@ -24,6 +30,21 @@ img{ max-width: 100%;}
 }
 .navbar .avatarUser {
   max-width: 80px;
+  border-radius: 80px;
+}
+
+/*login ------------------------------*/
+.loginContainer {
+  margin: 0 auto;
+}
+
+.loginContainer a {
+  color: #08c;
+  border-bottom: 1px dotted #08c;
+}
+.loginContainer a:hover {
+  color: #212529; 
+  border-bottom: 1px dotted #212529;
 }
 
 /*home ------------------------------*/
@@ -58,4 +79,55 @@ img{ max-width: 100%;}
   color: #fff;
   background-color: #dc3545;
   padding: 2px 4px;
+}
+
+/* social color ----------------------------*/
+.slack {
+  background: #611f69;
+  border: 2px solid #611f69;
+  color: white;
+}
+.slack:hover {
+  background: #8a2e95;
+  border-color: #8a2e95;
+}
+.facebook {
+  background: #2f55a4;
+  border: 2px solid #2f55a4;
+  color: white;
+}
+.facebook:hover {
+  background: #264584;
+  border-color: #264584;
+}
+.google {
+  background: #DB4437;;
+  border: 2px solid #DB4437;;
+  color: white;
+}
+.google:hover {
+  background: #c03b30;
+  border-color: #c03b30;
+}
+
+.slack:hover, .facebook:hover, .google:hover {  color: white; }
+
+/* responsive ----------------------------*/
+/* xl */
+@media (min-width: 1200px){
+}
+
+
+/* lg */
+@media (max-width: 992px){
+}
+
+/* md */
+@media (max-width: 768px){
+}
+
+/* SM */
+@media (max-width: 576px){
+  .titleLogin h1{ font-size: 1.60rem; }
+  .bt-login { margin-bottom: 1.0rem;}
 }

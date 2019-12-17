@@ -1,50 +1,60 @@
-<form action="/login" method="POST" class="mb-3" autocomplete="off">
-  <div class="form-group">
-    <label for="email">email</label>
-    <input name="email" type="email" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
-      placeholder="Enter name" value="{{ user.email }}">
+<div class="loginContainer card col-xl-6 col-lg-7 col-md-9 col-12">
+  <div class="card-body">
+    
+    <form action="/login" method="POST" class="mb-4 mt-4" autocomplete="off">
+      <div class="form-group">
+        {{!-- <label for="email">Email</label> --}}
+        <input name="email" type="email" class="form-control {{#if error.email }}is-invalid{{/if}}" id="email"
+          placeholder="Email" value="{{ user.email }}">
 
-    {{#if error.email}}
-    <div class="invalid-feedback">
-      {{error.email}}
-    </div>
-    {{/if}}
+        {{#if error.email}}
+        <div class="invalid-feedback">
+          {{error.email}}
+        </div>
+        {{/if}}
+      </div>
+
+      <div class="form-group mb-4">
+        {{!-- <label for="password">Contraseña</label> --}}
+        <input name="password" type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password"
+          placeholder="Contraseña" value="{{ user.password }}">
+
+        {{#if error.password}}
+        <div class="invalid-feedback">
+          {{error.password}}
+        </div>
+        {{/if}}
+      </div>
+
+      <div class="d-flex align-items-center justify-content-center flex-wrap no-gutters">
+        <div class="col-lg-4 col-md-4 col-12 text-center">
+           <button type="submit" class="btn btn-primary mr-lg-4">Iniciar Sesión</button>
+        </div>
+        <div class="col-lg-8  col-md-8 col-12 text-center">
+          <span class="d-md-block">Aún no eres usuario? <a href="/users/new" class="mb-3"> Registrarse</a></span>
+        </div>        
+      </div> 
+    </form>
+
+    <hr/>
+
+    <form action="/google" method="post" class="mb-4">
+      <button class="btn google btn-block" type="submit">
+        <i class="fab fa-google"></i>
+        Login with Google
+      </button>
+    </form>
+
+    <form action="/facebook" method="post" class="mb-4">
+      <button class="btn facebook btn-block" type="submit">
+        <i class="fab fa-facebook-f"></i> Login with Facebook
+      </button>
+    </form>
+
+    <form action="/slack" method="post" class="mb-4">
+      <button class="btn slack btn-block" type="submit">
+        <i class="fab fa-slack"></i> Login with Slack
+      </button>
+    </form>
   </div>
-
-  <div class="form-group">
-    <label for="password">password</label>
-    <input name="password" type="password" class="form-control {{#if error.password }}is-invalid{{/if}}" id="password"
-      placeholder="password" value="{{ user.password }}">
-
-    {{#if error.password}}
-    <div class="invalid-feedback">
-      {{error.password}}
-    </div>
-    {{/if}}
-  </div>
-
-  <button type="submit" class="btn btn-primary">
-    Log in
-  </button>
-</form>
-
-<a href="/users/new" class="mb-3">Sign up</a>
-
-<form action="/google" method="post" class="mb-3">
-  <button class="btn btn-danger btn-block" type="submit">
-    <i class="fa fa-google"></i>
-    Login with Google
-  </button>
-</form>
-
-<form action="/facebook" method="post" class="mb-3">
-  <button class="btn btn-primary btn-block" type="submit">
-    <i class="fa fa-facebook"></i> Login with Facebook
-  </button>
-</form>
-
-<form action="/slack" method="post">
-  <button class="btn btn-warning btn-block" type="submit">
-    <i class="fa fa-slack"></i> Login with Slack
-  </button>
-</form>
+</div>
