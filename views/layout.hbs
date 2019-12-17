@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>{{title}}</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -11,7 +13,10 @@
 	{{#if currentUser}}
 		{{> mainNavbar}}
 	{{else}}
-		<h1 class="h4 mb-0 font-weight-bold"><img class="" width="60px" src="https://cdn1.iconfinder.com/data/icons/people-job/100/Job-plus-42-256.png" /> Sugerencias y Quejas</h1>
+		<div class="text-center pt-4 mt-4 titleLogin">
+			<img class="mb-2" width="100px" src="https://cdn1.iconfinder.com/data/icons/people-job/100/Job-plus-42-256.png" />
+			<h1 class="h3 mb-0 font-weight-bold"> Sugerencias y Quejas</h1>
+		</div>
 	{{/if}}
 
 	<div class="container mt-5 pb-5">

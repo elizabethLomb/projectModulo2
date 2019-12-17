@@ -30,9 +30,7 @@ module.exports.create = (req, res, next) => {
 
   user.save()
   .then(user => {
-    //HACER:
     mailer.sendValidateEmail(user)
-    console.log(user)
     res.redirect('/login')
   }).catch(error => {
     if (error instanceof mongoose.Error.ValidationError) {
@@ -51,7 +49,7 @@ module.exports.create = (req, res, next) => {
   })
 }
 
-// HACER: validacion
+
 module.exports.validate = (req, res, next) => {
   User.findOne({ validateToken: req.params.token })
     .then(user => {

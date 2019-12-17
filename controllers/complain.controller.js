@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const User = require('../models/user.model')
 const Complain = require('../models/complain.model')
-//const Comment = require('../models/comment.model')
+const Comment = require('../models/comment.model')
 const categories = require('../constants/categories')
 const types = require('../constants/types')
 const Like = require('../models/like.model');
@@ -76,12 +76,32 @@ module.exports.doCreate = (req, res, next) => {
 module.exports.detailComplain = (req, res, next) => {
   Complain.findOne({ _id: req.params.id })
   .populate('user')
+
   .then(complain => {
     if(complain){
       res.render('quejas/detalle', { complain })
     } else {
       next(createError(404, 'Complain not found'));
     }
+  }).catch(error => { next(error); })
+}
+
+//add commebt
+module.exports.addComment = (req, res, next) => {
+  Complain.findOne({  _id: req.params.id })
+  .populate('user')
+
+  const comment = new Comment({
+    text: req.body.text,
+    user: req.currentUser._id,
+    complain: req.currentUser._id,
+  })
+  comment.save()
+
+  .then(comment => {
+    res.redirect('/', { comment })
+
+    console.log('---->', comment)
   }).catch(error => { next(error); })
 }
 

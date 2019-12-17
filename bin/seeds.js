@@ -1,7 +1,7 @@
 require('../config/db.config')
 const User = require('../models/user.model')
 const Complain = require('../models/complain.model')
-//const Comment = require('../models/comment.model')
+const Comment = require('../models/comment.model')
 const faker = require('faker')
 
 const categories = require('../constants/categories');
@@ -16,6 +16,8 @@ Promise.all([
 ])
   .then(() => {
     for (let i = 0; i < 20; i++) {
+
+      //creamos el usuario
       const user = new User({
         name: faker.name.firstName(),
         lastname: faker.name.lastName(),
@@ -34,6 +36,7 @@ Promise.all([
           userIds.push(user._id)
 
           for (let j = 0; j < 20; j++) {
+            //creamos las quejas
             const complain = new Complain({
               user: user._id,
               title: faker.lorem.words(),
@@ -45,6 +48,18 @@ Promise.all([
               createdAt: faker.date.past()
             })
             complain.save()
+
+              .then(comment => {
+                for (let k = 0; k < 20; k++) {
+                  const comment = new Comment({
+                    user: userIds[Math.floor(Math.random() * userIds.length)],
+                    complain: comment._id,
+                    text: faker.lorem.paragraph(),
+                    createdAt: faker.date.past()
+                  })
+                  comment.save()
+                }
+              })
 
           }
         }).catch(console.error)

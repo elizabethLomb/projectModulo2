@@ -11,7 +11,7 @@ const types = require('../constants/types')
 module.exports.complainsIndex = (req, res, next) => {
   Complain.find({ type: 'Queja' })
   .sort({ createdAt: -1 })
-  .limit(10)
+  .limit(20)
   .populate('user')
   .then(complains => {
     res.render('complains', { complains })
@@ -22,7 +22,7 @@ module.exports.complainsIndex = (req, res, next) => {
 module.exports.suggestionsIndex = (req, res, next) => {
   Complain.find({ type: 'Sugerencia' })
   .sort({ createdAt: -1 })
-  .limit(10)
+  .limit(20)
   .populate('user')
   .then(complains => {
     res.render('suggestions', { complains })
@@ -39,7 +39,7 @@ module.exports.results = (req, res, next) => {
 
   Complain.find(criteria)
   .sort({ createdAt: -1 })
-  .limit(10)
+  .limit(20)
   .populate('user')
     .then(complains => {
       res.render('results', { complains: complains })
