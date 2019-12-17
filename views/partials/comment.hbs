@@ -1,0 +1,20 @@
+{{#each complain.comments as |comment|}}
+  <div class="card shadow-sm mb-4 complainCard">
+    <div class="row align-items-center">
+      <div class="userData col-6 d-flex align-items-center">
+
+        {{!-- <img class="mr-3" src="{{comment.user.avatar}}" alt="{{user.username}}">
+        <div>
+          <a class="font-weight-bold d-block" href="{{user.username}}" class="d-block">{{comment.username}}</a>
+          <small class="text-muted">{{date comment.createdAt}}</small>
+        </div> --}}
+
+      </div>
+    </div>
+
+
+
+    {{comment.complain}}
+    {{comment.text}}
+  </div>
+{{/each}}

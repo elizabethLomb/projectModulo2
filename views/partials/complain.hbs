@@ -33,10 +33,9 @@
             <span class="likes-count">{{complain.likes.length}}</span> likes
           </button>
 
-          {{!-- comentarios --}}
           <button class="btn btn-sm mb-2 btn-outline-info" id="{{complain.id}}" onclick="" data-toggle="modal" data-target="#commentsModal">
             <i class="fas fa-comments"></i>
-            <span class="comments-count"></span>Comentar
+            <span class="comments-count">{{complain.comments.length}}</span>Comentar
         </div>
 
         {{> commentModal}}

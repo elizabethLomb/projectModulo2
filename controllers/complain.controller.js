@@ -21,6 +21,7 @@ module.exports.index = (req, res, next) => {
   .limit(10)
   .populate('user')
   .populate('likes')
+  .populate('comments')
     .then(complains => {
       res.render('index', { complains })
     }).catch(next)
@@ -76,7 +77,8 @@ module.exports.doCreate = (req, res, next) => {
 module.exports.detailComplain = (req, res, next) => {
   Complain.findOne({ _id: req.params.id })
   .populate('user')
-
+  .populate('likes')
+  .populate('comments')
   .then(complain => {
     if(complain){
       res.render('quejas/detalle', { complain })
@@ -86,22 +88,19 @@ module.exports.detailComplain = (req, res, next) => {
   }).catch(error => { next(error); })
 }
 
-//add commebt
+//add comment
 module.exports.addComment = (req, res, next) => {
-  Complain.findOne({  _id: req.params.id })
-  .populate('user')
+  const commentId = { complain: req.params.id, user: req.currentUser._id }
 
   const comment = new Comment({
     text: req.body.text,
     user: req.currentUser._id,
-    complain: req.currentUser._id,
+    tweet: commentId
   })
-  comment.save()
-
-  .then(comment => {
-    res.redirect('/', { comment })
-
-    console.log('---->', comment)
-  }).catch(error => { next(error); })
+  comment.save(comment => {
+    res.redirect('back')
+    console.log('------>', comment)
+  })
+    .then().catch(error => { next(error)})
 }
 

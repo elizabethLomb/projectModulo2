@@ -26,25 +26,26 @@
           {{> commentForm}}
         </div>
       </div>
+
+      {{> comment}}
+
+    {{!-- {{#each complain.comments as |comment|}}
+      <div class="mb-3 border-bottom pb-3">
+        <p class="card-subtitle mb-2 text-muted">{{date comment.createdAt}}</p>
+        <a href="/{{comment.user.username}}">{{comment.user.username}}</a>
+        <p>{{comment.text}}</p>
+      </div> 
+    {{/each}} --}}
+
+
     </div>
 
     <div class="complainInfo col-6">
-      <div>
       <button class="btn btn-sm mb-2 btn-outline-danger" id="{{complain.id}}" onclick="like(event)">
         <i class="fa fa-heart"></i>
         <span class="likes-count">{{complain.likes.length}}</span> likes
       </button>
     </div>
-    </div>
-    
-    comentarios
-    {{#each complain.comments as |comment|}}
-      <div class="mb-3 border-bottom pb-3">
-        <p class="card-subtitle mb-2 text-muted">{{date comment.createdAt}}</p>
-        <a href="/{{comment.user.username}}">{{comment.user.username}}</a>
-        <p>{{comment.text}}</p>
-      </div>
-    {{/each}}
 
   </div>
 
