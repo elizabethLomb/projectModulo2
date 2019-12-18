@@ -57,7 +57,6 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.doCreate = (req, res, next) => {
-  //const newComplain = new Complain(req.body)
   const newComplain = new Complain({
     user: req.currentUser,
     type: req.body.type,
@@ -89,18 +88,18 @@ module.exports.detailComplain = (req, res, next) => {
 }
 
 //add comment
-module.exports.addComment = (req, res, next) => {
-  const commentId = { complain: req.params.id, user: req.currentUser._id }
-
-  const comment = new Comment({
-    text: req.body.text,
-    user: req.currentUser._id,
-    tweet: commentId
-  })
-  comment.save(comment => {
-    res.redirect('back')
-    console.log('------>', comment)
-  })
-    .then().catch(error => { next(error)})
-}
+// module.exports.addComment = (req, res, next) => {
+//   Complain.findOne({ _id: req.params.id })
+//   .populate('user')
+//   const comment = new Comment({
+//     text: req.body.text,
+//     user: req.user.name,
+//     complains: params
+//   })
+//   comment.save()
+  
+//   .then(comment => {
+//     res.redirect('/:username')
+//   }).catch(error => { next(error)})
+// }
 
