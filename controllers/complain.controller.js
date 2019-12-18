@@ -88,18 +88,18 @@ module.exports.detailComplain = (req, res, next) => {
 }
 
 //add comment
-// module.exports.addComment = (req, res, next) => {
-//   Complain.findOne({ _id: req.params.id })
-//   .populate('user')
-//   const comment = new Comment({
-//     text: req.body.text,
-//     user: req.user.name,
-//     complains: params
-//   })
-//   comment.save()
+module.exports.addComment = (req, res, next) => {
+  Complain.findOne({ _id: req.params.id })
+  .populate('user')
+  const comment = new Comment({
+    text: req.body.text,
+    user: req.user.name,
+    complains: params
+  })
+  comment.save()
   
-//   .then(comment => {
-//     res.redirect('/:username')
-//   }).catch(error => { next(error)})
-// }
+  .then(comment => {
+    res.redirect('quejas/detalle')
+  }).catch(error => { next(error)})
+}
 

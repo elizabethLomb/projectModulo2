@@ -44,7 +44,7 @@ router.get('/quejas/detalle/:id', authMiddleware.isAuthenticated, complainContro
 router.post('/quejas/:id/like', authMiddleware.isAuthenticated, complainController.like)
 
 //comentarios
-// router.post('/quejas/:id/comments', authMiddleware.isAuthenticated, complainController.addComment)
+router.post('/quejas/detalle/:id', authMiddleware.isAuthenticated, complainController.addComment)
 
 router.get('/me/edit', authMiddleware.isAuthenticated, usersController.edit);
 router.post('/me/edit', authMiddleware.isAuthenticated, usersController.doEdit);
