@@ -57,7 +57,7 @@ module.exports.create = (req, res, next) => {
 
 module.exports.doCreate = (req, res, next) => {
   //const newComplain = new Complain(req.body)
-  const newComplain = new Complain({
+  const complain = new Complain({
     user: req.currentUser,
     type: req.body.type,
     subject: req.body.subject,
@@ -66,9 +66,9 @@ module.exports.doCreate = (req, res, next) => {
     images: req.file ? req.file.url : undefined
   })
 
-  newComplain.save()
-    .then(newComplain => {
-      mailer.sendComplain()
+  complain.save()
+    .then(complain => {
+      mailer.sendComplain(complain)
       res.redirect('/')
     }).catch(error => { next(error); })
 }

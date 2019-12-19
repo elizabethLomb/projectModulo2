@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 
 const APP_HOST = process.env.APP_HOST || 'http://localhost:3000'
-
 const user = process.env.MAIL_USER
 const pass = process.env.MAIL_PASS
 
@@ -24,15 +23,14 @@ module.exports.sendValidateEmail = (targetUser) => {
     .catch(error => console.log(error))
 }
 
-module.exports.sendComplain = (targetUser) => {
+module.exports.sendComplain = (complain) => {
   transporter.sendMail({
     from: `"Quejas Madrid" <${user}>`,
     to: `"Quejas Madrid" <complainsmadrid@gmail.com>`,
     subject: 'Nueva queja!',
-    html: `
-      <h1>Hello Test</h1>
+    html: 
+    `<h1>${complain}</h1>`
 
-    `
   })
     .then(info => console.log(info))
     .catch(error => console.log(error))
