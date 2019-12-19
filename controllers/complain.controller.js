@@ -75,7 +75,7 @@ module.exports.doCreate = (req, res, next) => {
 
 //detalle queja o sugerencia
 module.exports.detailComplain = (req, res, next) => {
-  Complain.findOne({ _id: req.params.id,  })
+  Complain.findOne({ _id: req.params.id })
   .populate('user')
   .populate({
     path: 'comments',
@@ -101,17 +101,16 @@ module.exports.detailComplain = (req, res, next) => {
 //add comment
 module.exports.addComment = (req, res, next) => {
   const params = { complain: req.params.id, user: req.currentUser._id }
-  
-  //Comment.findOne(params)
+  //const complainId = req.params.id
   const comment = new Comment({
     text: req.body.text,
     user: req.user.name,
     complains: params
   })
   comment.save()
-  
+
   .then(comment => {
-    res.redirect('quejas/detalle/')
+    res.redirect(`/quejas/detalle/${complainId}`, { comment })
   }).catch(error => { next(error)})
 }
 

@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-8">
-    <div class="card cardComplainDetail">
+    <div class="card complainCardDetail">
       <div class="card-body">
         <div class="complainHeader mb-3 row no-gutters align-items-center">
           <div class="userData col-9 d-flex align-items-center">
@@ -26,6 +26,17 @@
             <img src="{{complain.images}}"/>
           </div>
           <small class="text-muted">{{date complain.createdAt}}</small>
+        <hr/>
+        <div class="complainInfo">
+          <button class="btn btn-sm mr-2 ml-2 btn-outline-danger" id="{{complain.id}}" onclick="like(event)">
+            <i class="fa fa-heart"></i>
+            <span class="likes-count">{{complain.likes.length}}</span>
+          </button>
+
+          <button class="btn btn-sm btn-outline-info mr-2 ml-2" id="{{complain.id}}" onclick="" data-toggle="modal" data-target="#commentsModal">
+            <i class="fas fa-comments mr-2"></i><span class="comments-count">{{complain.comments.length}}</span>
+          </button>
+        </div>
         </article>
         <hr/>
 
@@ -39,13 +50,6 @@
 
           {{> comment}}
 
-        </div>
-
-        <div class="complainInfo col-6">
-          <button class="btn btn-sm mb-2 btn-outline-danger" id="{{complain.id}}" onclick="like(event)">
-            <i class="fa fa-heart"></i>
-            <span class="likes-count">{{complain.likes.length}}</span> likes
-          </button>
         </div>
       
     </div>

@@ -57,9 +57,25 @@ label { font-weight: 500; }
 }
 
 /* complain card ----------------------------*/
-.complainCard .card-header {
+.complainCard:hover, .complainCard:hover .card-header, .complainCard:hover .card-footer {
+  background: rgb(245, 248, 250);
+  cursor: pointer;
+}
+.complainCard .card-header, .complainCard .card-footer {
   background: white;
 }
+.complainCard .stretched-link::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 60px;
+  left: 0;
+  z-index: 1;
+  pointer-events: auto;
+  content: "";
+  background-color: transparent;
+}
+
 .complainCard .userData img, .complainHeader .userAvatar, .commentHeader .userImage img {
   max-width: 60px;
   border-radius: 60px;
@@ -83,7 +99,7 @@ label { font-weight: 500; }
 
 /* complain detail ----------------------------*/
 .complainHeader .userAvatar { max-width: 100px; }
-.cardComplainDetail article img {
+.complainCardDetail article img {
   width: 100%;
   margin: 0 auto;
 }

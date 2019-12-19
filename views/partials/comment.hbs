@@ -4,6 +4,8 @@
       <div class="commentHeader mb-3 row no-gutters align-items-center">
         <div class="userImage col-2 d-flex align-items-center">
           <img class="mr-3" src="{{comment.user.avatar}}" alt="{{user.username}}">
+          <a class="font-weight-bold d-block" href="/{{comment.user.username}}" class="d-block">{{comment.user.username}}</a>
+          <small class="ml-3 text-muted">{{date comment.createdAt}}</small>
         </div>
       </div>
 
