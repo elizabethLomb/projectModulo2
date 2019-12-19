@@ -1,19 +1,18 @@
 {{#each complain.comments as |comment|}}
   <div class="card shadow-sm mb-4 complainCard">
-    <div class="row align-items-center">
-      <div class="userData col-6 d-flex align-items-center">
+    <div class="card-body">
+      <div class="row align-items-center">
+        <div class="userData col-3">
+          <img class="mr-3" src="{{comment.user.avatar}}" alt="{{user.username}}">
+        </div>
 
-        {{!-- <img class="mr-3" src="{{comment.user.avatar}}" alt="{{user.username}}">
-        <div>
+        <div class="col-6">
           <a class="font-weight-bold d-block" href="{{user.username}}" class="d-block">{{comment.username}}</a>
           <small class="text-muted">{{date comment.createdAt}}</small>
-        </div> --}}
+          <p>{{comment.text}}</p>
+        </div>
 
       </div>
     </div>
-
-    {{complain.comment.user.username}}
-    {{comment.user.avatar}}
-    {{comment.text}}
   </div>
 {{/each}}

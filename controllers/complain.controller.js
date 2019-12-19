@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const User = require('../models/user.model')
-const Complain = require('../models/complain.model')
-const Comment = require('../models/comment.model')
-const categories = require('../constants/categories')
-const types = require('../constants/types')
+const Complain = require('../models/complain.model');
+const User = require('../models/user.model');
+const Comment = require('../models/comment.model');
+const categories = require('../constants/categories');
+const types = require('../constants/types');
 const Like = require('../models/like.model');
 
 //index - short preview of complains
@@ -18,12 +18,13 @@ module.exports.index = (req, res, next) => {
 
   Complain.find(criteria)
   .sort({ createdAt: -1 })
-  .limit(10)
+  .limit(20)
   .populate('user')
-  .populate('likes')
   .populate('comments')
+  .populate('likes')
+
     .then(complains => {
-      res.render('index', { complains })
+      res.render('index', { user: req.currentUser, complains })
     }).catch(next)
 }
 
@@ -74,13 +75,23 @@ module.exports.doCreate = (req, res, next) => {
 
 //detalle queja o sugerencia
 module.exports.detailComplain = (req, res, next) => {
-  Complain.findOne({ _id: req.params.id })
+  Complain.findOne({ _id: req.params.id,  })
   .populate('user')
-  .populate('likes')
-  .populate('comments')
+  .populate({
+    path: 'comments',
+    options: {
+      sort: {
+        createdAt: -1
+      }
+    },
+    populate: {
+      path: 'user'
+    }
+  })
+
   .then(complain => {
     if(complain){
-      res.render('quejas/detalle', { complain })
+      res.render('quejas/detalle', { complain, user: complain.user })
     } else {
       next(createError(404, 'Complain not found'));
     }
@@ -89,8 +100,9 @@ module.exports.detailComplain = (req, res, next) => {
 
 //add comment
 module.exports.addComment = (req, res, next) => {
-  Complain.findOne({ _id: req.params.id })
-  .populate('user')
+  const params = { complain: req.params.id, user: req.currentUser._id }
+  
+  //Comment.findOne(params)
   const comment = new Comment({
     text: req.body.text,
     user: req.user.name,
@@ -99,7 +111,7 @@ module.exports.addComment = (req, res, next) => {
   comment.save()
   
   .then(comment => {
-    res.redirect('quejas/detalle')
+    res.redirect('quejas/detalle/')
   }).catch(error => { next(error)})
 }
 
