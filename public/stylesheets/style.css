@@ -60,7 +60,7 @@ label { font-weight: 500; }
 .complainCard .card-header {
   background: white;
 }
-.complainCard .userData img, .complainHeader .userAvatar {
+.complainCard .userData img, .complainHeader .userAvatar, .commentHeader .userImage img {
   max-width: 60px;
   border-radius: 60px;
 }
