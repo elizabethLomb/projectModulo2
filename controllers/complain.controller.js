@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mailer = require('../config/mailer.config');
 const User = require('../models/user.model')
 const Complain = require('../models/complain.model')
 const Comment = require('../models/comment.model')
@@ -67,7 +67,8 @@ module.exports.doCreate = (req, res, next) => {
   })
 
   newComplain.save()
-    .then(() => {
+    .then(newComplain => {
+      mailer.sendComplain()
       res.redirect('/')
     }).catch(error => { next(error); })
 }

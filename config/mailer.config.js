@@ -23,3 +23,17 @@ module.exports.sendValidateEmail = (targetUser) => {
     .then(info => console.log(info))
     .catch(error => console.log(error))
 }
+
+module.exports.sendComplain = (targetUser) => {
+  transporter.sendMail({
+    from: `"Quejas Madrid" <${user}>`,
+    to: `"Quejas Madrid" <complainsmadrid@gmail.com>`,
+    subject: 'Nueva queja!',
+    html: `
+      <h1>Hello Test</h1>
+
+    `
+  })
+    .then(info => console.log(info))
+    .catch(error => console.log(error))
+}
