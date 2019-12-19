@@ -1,13 +1,15 @@
 const nodemailer = require('nodemailer');
-
+// const complain = require('../controllers/complain.controller')
 const APP_HOST = process.env.APP_HOST || 'http://localhost:3000'
 const user = process.env.MAIL_USER
 const pass = process.env.MAIL_PASS
-
+const faker = require('faker')
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: { user, pass }
 });
+
+// const ecomplain = ['type', 'subject', 'title', 'body',]
 
 module.exports.sendValidateEmail = (targetUser) => {
   transporter.sendMail({
@@ -29,7 +31,19 @@ module.exports.sendComplain = (complain) => {
     to: `"Quejas Madrid" <complainsmadrid@gmail.com>`,
     subject: 'Nueva queja!',
     html: 
-    `<h1>${complain}</h1>`
+    `<h1>
+    ${complain.user} <br> 
+    ${complain.type} <br> 
+    ${complain.subject} <br> 
+    ${complain.title} <br> 
+    ${complain.body} <br> 
+    ${complain.images} <br> 
+    <br> 
+    <br> 
+    <p style="color:red; font-size:10px;">Signature <br> 
+    ${faker.lorem.sentence()}</p>
+    </h1>`
+
 
   })
     .then(info => console.log(info))
