@@ -1,12 +1,14 @@
 <div class="row">
-  <div class="col-4">
-    <img src="{{user.avatar}}" alt="{{user.username}}" />
-    <p>{{user.username}}</p>
-    <p>{{user.city}}</p>
-    <p>{{user.bio}}</p>
+  <div class="col-lg-4 col-md-4 col-12">
+    <div class="profileInfo">
+      <img class="mb-3" src="{{user.avatar}}" alt="{{user.username}}" />
+      <p class="font-weight-bold mb-2">{{user.username}}</p>
+      <small class="text-muted d-block mb-2"><i class="fas fa-map-marker-alt"></i> {{user.city}}</small>
+      <p>{{user.bio}}</p>
+    </div>
   </div>
 
-  <div class="col-8">
+  <div class="col-lg-8 col-md-8 col-12">
     {{> complain}}
   </div>
 </div>

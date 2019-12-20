@@ -56,6 +56,9 @@ label { font-weight: 500; }
   background-size: cover;
 }
 
+/* profile ----------------------------*/
+.profileInfo img { border-radius: 60px;}
+
 /* complain card ----------------------------*/
 .complainCard:hover, .complainCard:hover .card-header, .complainCard:hover .card-footer {
   background: rgb(245, 248, 250);
@@ -107,9 +110,6 @@ label { font-weight: 500; }
 /*comment modal  ----------------------------*/
 .cardCommentModal {
   border-radius: 0;
-  /* border-left: 0;
-  border-right: 0;
-  border-top: 0; */
   border: 0;
 }
 .cardCommentModal::after {
@@ -179,4 +179,6 @@ label { font-weight: 500; }
     margin-top: 15px;
   }
   .complainCardDetail .headerData span { margin-right: 10px;}
+
+  .profileInfo { text-align: center; }
 }
