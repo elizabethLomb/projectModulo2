@@ -173,4 +173,10 @@ label { font-weight: 500; }
 @media (max-width: 576px){
   .titleLogin h1{ font-size: 1.60rem; }
   .bt-login { margin-bottom: 1.0rem;}
+
+  .complainCardDetail .headerData {
+    display: flex;
+    margin-top: 15px;
+  }
+  .complainCardDetail .headerData span { margin-right: 10px;}
 }

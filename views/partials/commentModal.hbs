@@ -16,12 +16,12 @@
           <div class="card cardCommentModal">
             <div class="card-body">
               <div class="row align-items-center">
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-3 col-3">
                   <div class="userImage">
                     <img class="mr-3" src="{{comment.user.avatar}}" alt="{{user.username}}"/>
                   </div>
                 </div>
-                <div class="col-lg-10">
+                <div class="col-lg-10 col-md-9 col-9">
                   <div class="commentHeader mb-1 row no-gutters align-items-center">
                     <a class="font-weight-bold d-block" href="/{{comment.user.username}}" class="d-block">{{comment.user.username}}</a>
                     <small class="ml-3 text-muted">{{date comment.createdAt}}</small>
@@ -38,7 +38,7 @@
       </div>
 
       <div class="modal-footer">
-        <a href="quejas/detalle/{{complains.id}}">Ver más comentarios</a>
+        <a href="quejas/detalle/{{complain.id}}">Ver más comentarios</a>
       </div>
 
     </div>
