@@ -76,8 +76,8 @@ label { font-weight: 500; }
   background-color: transparent;
 }
 
-.complainCard .userData img, .complainHeader .userAvatar, .commentHeader .userImage img {
-  max-width: 60px;
+.complainCard .userData img, .complainHeader .userAvatar, .commentHeader .userImage img, .cardCommentModal .userImage img {
+  max-width: 70px;
   border-radius: 60px;
 }
 .complainCard .tagSubject,
@@ -102,6 +102,26 @@ label { font-weight: 500; }
 .complainCardDetail article img {
   width: 100%;
   margin: 0 auto;
+}
+
+/*comment modal  ----------------------------*/
+.cardCommentModal {
+  border-radius: 0;
+  /* border-left: 0;
+  border-right: 0;
+  border-top: 0; */
+  border: 0;
+}
+.cardCommentModal::after {
+  content: "";
+  width: 2px;
+  background-color: rgb(218, 226, 232);
+  min-height: 36px;
+  left: 52px;
+  position: inherit;
+}
+.cardCommentModal:last-child {
+  border-bottom: none;
 }
 
 /* social color ----------------------------*/
