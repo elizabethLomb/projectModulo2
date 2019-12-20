@@ -5,6 +5,7 @@ const Comment = require('../models/comment.model');
 const categories = require('../constants/categories');
 const types = require('../constants/types');
 const Like = require('../models/like.model');
+const mailer = require('../config/mailer.config')
 
 //index - short preview of complains
 module.exports.index = (req, res, next) => {

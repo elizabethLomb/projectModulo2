@@ -31,18 +31,25 @@ module.exports.sendComplain = (complain) => {
     to: `"Quejas Madrid" <complainsmadrid@gmail.com>`,
     subject: 'Nueva queja!',
     html: 
-    `<h1>
-    ${complain.user} <br> 
-    ${complain.type} <br> 
-    ${complain.subject} <br> 
-    ${complain.title} <br> 
-    ${complain.body} <br> 
-    ${complain.images} <br> 
+    `
+    <ul style="list-style-type:none;">
+    <h1 style="font-size:20px;">
+    <li style="color:red;">Categoria: <b>${complain.type}</b></li> <br> 
+    <li style="color:pink;">Tema: <b>${complain.subject}</b></li> <br> 
+    <li style="color:blue;">Titulo: <b>${complain.title}</b></li> <br> 
+    </h1>
+    <h2 style="font-size:15px;">
+    <li>Contenido: <br> 
+    ${complain.body}</li> <br> 
+    </h2>
     <br> 
     <br> 
-    <p style="color:red; font-size:10px;">Signature <br> 
-    ${faker.lorem.sentence()}</p>
-    </h1>`
+    
+    <p style="color:red; font-size:10px;">
+    Aviso de confidencialidad:
+    ${faker.lorem.paragraphs()}</p>
+  
+    `
 
 
   })
