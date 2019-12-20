@@ -1,56 +1,57 @@
-<h2 class="display-4">{{complain.title}}</h2>
-
-<div class="row">
+<div class="row justify-content-center">
   <div class="col-8">
-    <div class="article-img">
-      <img src="{{complain.images}}"/>
-    </div>
-    <hr/>
-    <div class="userData col-6 d-flex align-items-center">
-      
-      <img class="mr-3" src="{{complain.user.avatar}}" alt="{{user.username}}">
-      <div>
-        <a class="font-weight-bold d-block" href="/{{complain.user.username}}" class="d-block">{{complain.user.username}}</a>
-        <small class="text-muted d-block"><i class="fas fa-map-marker-alt"></i> {{complain.user.city}}</small>
-        <small class="text-muted">{{date complain.createdAt}}</small>
-      </div>
-    </div>
-    <hr/>
-    <article>
-      {{complain.body}}
-    </article>
-    
-    <div class="commentsSections">
-      <div class="card">
-        <div class="card-body">
-          {{> commentForm}}
+    <div class="card complainCardDetail">
+      <div class="card-body">
+        <div class="complainHeader mb-3 row no-gutters align-items-center">
+          <div class="userData col-9 d-flex align-items-center">
+            <div class="col-3 pl-0">
+              <img class="userAvatar mr-3" src="{{complain.user.avatar}}" alt="{{user.username}}">
+            </div>
+            <div class="col-9">
+              <a class="font-weight-bold d-block" href="/{{complain.user.username}}" class="d-block">{{complain.user.username}}</a>
+              <small class="text-muted d-block"><i class="fas fa-map-marker-alt"></i> {{complain.user.city}}</small>
+            </div>
+
+          </div>
+          <div class="headerData col-3 text-lg-right">
+            <span class="{{#typeIndex complain.type}}tagTypeSugestion{{else}}tagTypeComplain{{/typeIndex}}">{{complain.type}}</span>
+            <span class="tagSubject d-block mt-2"><i class="fas fa-tag mr-1"></i> {{complain.subject}}</span>
+          </div>
         </div>
-      </div>
+
+        <article>    
+          <h2 class="h3 font-weight-bold">{{complain.title}}</h2>
+          <p>{{complain.body}}</p>
+          <div class="article-img mb-3">
+            <img src="{{complain.images}}"/>
+          </div>
+          <small class="text-muted">{{date complain.createdAt}}</small>
+        <hr/>
+        <div class="complainInfo">
+          <button class="btn btn-sm mr-2 ml-2 btn-outline-danger" id="{{complain.id}}" onclick="like(event)">
+            <i class="fa fa-heart"></i>
+            <span class="likes-count">{{complain.likes.length}}</span>
+          </button>
+
+          <button class="btn btn-sm btn-outline-info mr-2 ml-2" id="{{complain.id}}" onclick="" data-toggle="modal" data-target="#commentsModal">
+            <i class="fas fa-comments mr-2"></i><span class="comments-count">{{complain.comments.length}}</span>
+          </button>
+        </div>
+        </article>
+        <hr/>
+
+        <div class="commentsSections">
+          <div class="card">
+            <div class="card-body">
+              {{> commentForm}}
+            </div>
+          </div>
+          <hr/>
+
+          {{> comment}}
+
+        </div>
+      
     </div>
-
-    <div class="complainInfo col-6">
-      <div>
-      <button class="btn btn-sm mb-2 btn-outline-danger" id="{{complain.id}}" onclick="like(event)">
-        <i class="fa fa-heart"></i>
-        <span class="likes-count">{{complain.likes.length}}</span> likes
-      </button>
-    </div>
-    </div>
-    
-    comentarios
-    {{#each complain.comments as |comment|}}
-      <div class="mb-3 border-bottom pb-3">
-        <p class="card-subtitle mb-2 text-muted">{{date comment.createdAt}}</p>
-        <a href="/{{comment.user.username}}">{{comment.user.username}}</a>
-        <p>{{comment.text}}</p>
-      </div>
-    {{/each}}
-
-  </div>
-
-  <div class="col-4">
-   <span class="{{#typeIndex complain.type}}tagTypeSugestion{{else}}tagTypeComplain{{/typeIndex}}">{{complain.type}}</span>
-
-    <span class="tagSubject d-block mt-2"><i class="fas fa-tag mr-1"></i> {{complain.subject}}</span>
   </div>
 </div>

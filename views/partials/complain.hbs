@@ -1,5 +1,5 @@
 {{#each complains as |complain|}}
-  <div class="card shadow-sm mb-4 complainCard">
+  <div class="card shadow-sm mb-4 complainCard" data-focusable="true">
     <div class="card-header">
       <div class="row">
         <div class="col-6">
@@ -11,36 +11,34 @@
       </div>
     </div>
 
-    <div class="card-body">
-      <h3 class="card-title">{{complain.title}}</h3>
-      <p class="card-text">{{complain.body}} <a href="quejas/detalle/{{complain.id}}">Leer más</a></p>
-
-              
-
-      <div class="row align-items-center">
-        <div class="userData col-6 d-flex align-items-center">
-          <img class="mr-3" src="{{complain.user.avatar}}" alt="{{user.username}}">
-          <div>
-            <a class="font-weight-bold d-block" href="{{user.username}}" class="d-block">{{complain.user.username}}</a>
-            <small class="text-muted">{{date complain.createdAt}}</small>
+    <a class="stretched-link" href="quejas/detalle/{{complain.id}}">
+      <div class="card-body">
+        <div class="complainHeader row align-items-center mb-3">
+          <div class="userData col-6 d-flex align-items-center">
+            <img class="mr-3" src="{{complain.user.avatar}}" alt="{{user.username}}">
+            <div>
+              <a class="font-weight-bold d-block" href="{{user.username}}" class="d-block">{{complain.user.username}}</a>
+              <small class="text-muted">{{date complain.createdAt}}</small>
+            </div>
           </div>
         </div>
 
-        <div class="complainInfo col-6">
-          {{!-- likes --}}
-          <button class="btn btn-sm mb-2 btn-outline-danger" id="{{complain.id}}" onclick="like(event)">
-            <i class="fa fa-heart"></i>
-            <span class="likes-count">{{complain.likes.length}}</span> likes
-          </button>
-
-          {{!-- comentarios --}}
-          <button class="btn btn-sm mb-2 btn-outline-info" id="{{complain.id}}" onclick="" data-toggle="modal" data-target="#commentsModal">
-            <i class="fas fa-comments"></i>
-            <span class="comments-count"></span>Comentar
-        </div>
-
-        {{> commentModal}}
+        <article>
+          <h3 class="h5 font-weight-bold card-title mb-1">{{complain.title}}</h3>
+          <p class="card-text">{{complain.body}}</p>
+        </article>
       </div>
+    </a>
+    
+    <div class="card-footer d-flex justify-content-center">
+      <button class="btn btn-sm btn-outline-danger mr-2 ml-2" id="{{complain.id}}" onclick="like(event)">
+        <i class="fa fa-heart mr-2"></i><span class="likes-count">{{complain.likes.length}}</span>
+      </button>
+
+      <button class="btn btn-sm btn-outline-info mr-2 ml-2" id="{{complain.id}}" onclick="" data-toggle="modal" data-target="#commentsModal">
+        <i class="fas fa-comments mr-2"></i><span class="comments-count">{{complain.comments.length}}</span>
+      </button>
     </div>
+    {{> commentModal}}
   </div>
 {{/each}}

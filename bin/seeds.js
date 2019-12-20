@@ -1,4 +1,5 @@
 require('../config/db.config')
+
 const User = require('../models/user.model')
 const Complain = require('../models/complain.model')
 const Comment = require('../models/comment.model')
@@ -11,8 +12,8 @@ const userIds = []
 
 Promise.all([
   User.deleteMany(),
-  Complain.deleteMany()
-  // Comment.deleteMany()
+  Complain.deleteMany(),
+  Comment.deleteMany()
 ])
   .then(() => {
     for (let i = 0; i < 20; i++) {
@@ -49,11 +50,11 @@ Promise.all([
             })
             complain.save()
 
-              .then(comment => {
+              .then(complain => {
                 for (let k = 0; k < 20; k++) {
                   const comment = new Comment({
                     user: userIds[Math.floor(Math.random() * userIds.length)],
-                    complain: comment._id,
+                    complain: complain._id,
                     text: faker.lorem.paragraph(),
                     createdAt: faker.date.past()
                   })

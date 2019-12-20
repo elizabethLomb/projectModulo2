@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
-const mailer = require('../config/mailer.config');
-const User = require('../models/user.model')
-const Complain = require('../models/complain.model')
-const Comment = require('../models/comment.model')
-const categories = require('../constants/categories')
-const types = require('../constants/types')
+const Complain = require('../models/complain.model');
+const User = require('../models/user.model');
+const Comment = require('../models/comment.model');
+const categories = require('../constants/categories');
+const types = require('../constants/types');
 const Like = require('../models/like.model');
 
 //index - short preview of complains
@@ -18,11 +17,13 @@ module.exports.index = (req, res, next) => {
 
   Complain.find(criteria)
   .sort({ createdAt: -1 })
-  .limit(10)
+  .limit(20)
   .populate('user')
+  .populate('comments')
   .populate('likes')
+
     .then(complains => {
-      res.render('index', { complains })
+      res.render('index', { user: req.currentUser, complains })
     }).catch(next)
 }
 
@@ -58,6 +59,7 @@ module.exports.create = (req, res, next) => {
 module.exports.doCreate = (req, res, next) => {
   //const newComplain = new Complain(req.body)
   const complain = new Complain({
+
     user: req.currentUser,
     type: req.body.type,
     subject: req.body.subject,
@@ -77,32 +79,40 @@ module.exports.doCreate = (req, res, next) => {
 module.exports.detailComplain = (req, res, next) => {
   Complain.findOne({ _id: req.params.id })
   .populate('user')
+  .populate({
+    path: 'comments',
+    options: {
+      sort: {
+        createdAt: -1
+      }
+    },
+    populate: {
+      path: 'user'
+    }
+  })
 
   .then(complain => {
     if(complain){
-      res.render('quejas/detalle', { complain })
+      res.render('quejas/detalle', { complain, user: complain.user })
     } else {
       next(createError(404, 'Complain not found'));
     }
   }).catch(error => { next(error); })
 }
 
-//add commebt
+//add comment
 module.exports.addComment = (req, res, next) => {
-  Complain.findOne({  _id: req.params.id })
-  .populate('user')
-
+  const params = { complain: req.params.id, user: req.currentUser._id }
+  //const complainId = req.params.id
   const comment = new Comment({
     text: req.body.text,
-    user: req.currentUser._id,
-    complain: req.currentUser._id,
+    user: req.user.name,
+    complains: params
   })
   comment.save()
 
   .then(comment => {
-    res.redirect('/', { comment })
-
-    console.log('---->', comment)
-  }).catch(error => { next(error); })
+    res.redirect(`/quejas/detalle/${complainId}`, { comment })
+  }).catch(error => { next(error)})
 }
 
