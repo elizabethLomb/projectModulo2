@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const Complain = require('../models/complain.model');
 const User = require('../models/user.model');
 const Comment = require('../models/comment.model');
@@ -58,7 +57,9 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.doCreate = (req, res, next) => {
-  const newComplain = new Complain({
+  //const newComplain = new Complain(req.body)
+  const complain = new Complain({
+
     user: req.currentUser,
     type: req.body.type,
     subject: req.body.subject,
@@ -67,8 +68,9 @@ module.exports.doCreate = (req, res, next) => {
     images: req.file ? req.file.url : undefined
   })
 
-  newComplain.save()
-    .then(() => {
+  complain.save()
+    .then(complain => {
+      mailer.sendComplain(complain)
       res.redirect('/')
     }).catch(error => { next(error); })
 }
