@@ -6,8 +6,6 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
-//const alertMiddleware = require('./middlewares/alert.middleware')
-
 
 /**
  * Handlebars and Mongoose config

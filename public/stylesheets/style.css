@@ -56,6 +56,9 @@ label { font-weight: 500; }
   background-size: cover;
 }
 
+/* profile ----------------------------*/
+.profileInfo img { border-radius: 60px;}
+
 /* complain card ----------------------------*/
 .complainCard:hover, .complainCard:hover .card-header, .complainCard:hover .card-footer {
   background: rgb(245, 248, 250);
@@ -76,8 +79,8 @@ label { font-weight: 500; }
   background-color: transparent;
 }
 
-.complainCard .userData img, .complainHeader .userAvatar, .commentHeader .userImage img {
-  max-width: 60px;
+.complainCard .userData img, .complainHeader .userAvatar, .commentHeader .userImage img, .cardCommentModal .userImage img {
+  max-width: 70px;
   border-radius: 60px;
 }
 .complainCard .tagSubject,
@@ -102,6 +105,23 @@ label { font-weight: 500; }
 .complainCardDetail article img {
   width: 100%;
   margin: 0 auto;
+}
+
+/*comment modal  ----------------------------*/
+.cardCommentModal {
+  border-radius: 0;
+  border: 0;
+}
+.cardCommentModal::after {
+  content: "";
+  width: 2px;
+  background-color: rgb(218, 226, 232);
+  min-height: 36px;
+  left: 52px;
+  position: inherit;
+}
+.cardCommentModal:last-child {
+  border-bottom: none;
 }
 
 /* social color ----------------------------*/
@@ -153,4 +173,12 @@ label { font-weight: 500; }
 @media (max-width: 576px){
   .titleLogin h1{ font-size: 1.60rem; }
   .bt-login { margin-bottom: 1.0rem;}
+
+  .complainCardDetail .headerData {
+    display: flex;
+    margin-top: 15px;
+  }
+  .complainCardDetail .headerData span { margin-right: 10px;}
+
+  .profileInfo { text-align: center; }
 }

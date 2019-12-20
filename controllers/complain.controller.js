@@ -19,9 +19,17 @@ module.exports.index = (req, res, next) => {
   .sort({ createdAt: -1 })
   .limit(20)
   .populate('user')
-  .populate('comments')
+  .populate({
+    path: 'comments',
+    options: {
+      sort: { createdAt: -1 }
+    },
+    populate: {
+      path: 'user'
+    }
+  })
   .populate('likes')
-
+  
     .then(complains => {
       res.render('index', { user: req.currentUser, complains })
     }).catch(next)
@@ -102,17 +110,15 @@ module.exports.detailComplain = (req, res, next) => {
 
 //add comment
 module.exports.addComment = (req, res, next) => {
-  const params = { complain: req.params.id, user: req.currentUser._id }
-  //const complainId = req.params.id
+  const complainId = req.params.id
   const comment = new Comment({
     text: req.body.text,
-    user: req.user.name,
-    complains: params
+    user: req.currentUser._id,
+    complain: complainId
   })
   comment.save()
-
   .then(comment => {
-    res.redirect(`/quejas/detalle/${complainId}`, { comment })
+    res.redirect(`/quejas/detalle/${complainId}`)
   }).catch(error => { next(error)})
 }
 

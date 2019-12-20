@@ -9,7 +9,6 @@ const types = require('../constants/types')
 const passport = require('passport');
 
 
-
 //nuevo usuario
 module.exports.new = (req, res, next) => {
   res.render('users/new', { user: new User() })
