@@ -100,17 +100,16 @@ module.exports.detailComplain = (req, res, next) => {
 
 //add comment
 module.exports.addComment = (req, res, next) => {
-  const params = { complain: req.params.id, user: req.currentUser._id }
-  //const complainId = req.params.id
+  //const params = { complain: req.params.id, user: req.currentUser._id }
+  const complainId = req.params.id
   const comment = new Comment({
     text: req.body.text,
-    user: req.user.name,
-    complains: params
+    user: req.currentUser._id,
+    complain: complainId
   })
   comment.save()
-
   .then(comment => {
-    res.redirect(`/quejas/detalle/${complainId}`, { comment })
+    res.redirect(`/quejas/detalle/${complainId}`)
   }).catch(error => { next(error)})
 }
 
